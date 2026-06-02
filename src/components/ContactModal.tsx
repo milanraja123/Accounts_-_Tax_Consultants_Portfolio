@@ -63,13 +63,13 @@ export default function ContactModal({ isOpen, onClose, dict }: ContactModalProp
             {!isSubmitted ? (
               <form id="contact-form" onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <h3 className="text-2xl font-bold text-[#10172a]">{dict.modalTitle}</h3>
-                  <p className="text-sm text-gray-500 mt-1">{dict.modalSub}</p>
+                  <h3 className="text-2xl font-bold text-[#10172a] font-grotesk">{dict.modalTitle}</h3>
+                  <p className="text-sm text-gray-500 mt-1 font-opensans">{dict.modalSub}</p>
                 </div>
 
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-1">
+                    <label className="block text-sm font-semibold text-gray-700 mb-1 font-poppins">
                       {dict.nameLabel}
                     </label>
                     <input
@@ -79,12 +79,12 @@ export default function ContactModal({ isOpen, onClose, dict }: ContactModalProp
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="e.g. John Doe"
-                      className="w-full text-sm rounded-lg border border-gray-300 px-4 py-3 focus:border-[#1a253c] focus:outline-none focus:ring-2 focus:ring-[#1a253c]/20 transition-all font-sans"
+                      className="w-full text-sm rounded-lg border border-gray-300 px-4 py-3 focus:border-[#1a253c] focus:outline-none focus:ring-2 focus:ring-[#1a253c]/20 transition-all font-opensans"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-1">
+                    <label className="block text-sm font-semibold text-gray-700 mb-1 font-poppins">
                       {dict.emailLabel}
                     </label>
                     <input
@@ -94,12 +94,12 @@ export default function ContactModal({ isOpen, onClose, dict }: ContactModalProp
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="e.g. john@example.com"
-                      className="w-full text-sm rounded-lg border border-gray-300 px-4 py-3 focus:border-[#1a253c] focus:outline-none focus:ring-2 focus:ring-[#1a253c]/20 transition-all font-sans"
+                      className="w-full text-sm rounded-lg border border-gray-300 px-4 py-3 focus:border-[#1a253c] focus:outline-none focus:ring-2 focus:ring-[#1a253c]/20 transition-all font-opensans"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-1">
+                    <label className="block text-sm font-semibold text-gray-700 mb-1 font-poppins">
                       {dict.messageLabel}
                     </label>
                     <textarea
@@ -109,7 +109,7 @@ export default function ContactModal({ isOpen, onClose, dict }: ContactModalProp
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="What services are you looking for..."
-                      className="w-full text-sm rounded-lg border border-gray-300 px-4 py-3 focus:border-[#1a253c] focus:outline-none focus:ring-2 focus:ring-[#1a253c]/20 transition-all font-sans"
+                      className="w-full text-sm rounded-lg border border-gray-300 px-4 py-3 focus:border-[#1a253c] focus:outline-none focus:ring-2 focus:ring-[#1a253c]/20 transition-all font-opensans"
                     />
                   </div>
                 </div>
@@ -117,7 +117,7 @@ export default function ContactModal({ isOpen, onClose, dict }: ContactModalProp
                 <button
                   id="contact-submit-btn"
                   type="submit"
-                  className="w-full bg-[#1a253c] text-white hover:bg-[#11192b] font-medium py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all"
+                  className="w-full bg-[#1a253c] text-white hover:bg-[#11192b] font-medium py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all font-poppins"
                 >
                   {dict.submitBtn}
                 </button>
@@ -132,8 +132,8 @@ export default function ContactModal({ isOpen, onClose, dict }: ContactModalProp
                 <div className="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
                   <Check className="h-8 w-8" />
                 </div>
-                <h3 className="text-xl font-bold text-[#10172a]">Sent Successfully!</h3>
-                <p className="text-gray-600 max-w-sm">{dict.successMessage}</p>
+                <h3 className="text-xl font-bold text-[#10172a] font-grotesk">Sent Successfully!</h3>
+                <p className="text-gray-600 max-w-sm font-opensans">{dict.successMessage}</p>
               </motion.div>
             )}
           </motion.div>
