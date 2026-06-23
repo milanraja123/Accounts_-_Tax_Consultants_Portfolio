@@ -4,17 +4,16 @@
  */
 
 import { motion } from 'motion/react';
-import { Link } from 'react-router-dom';
 import {
   MapPin,
   Phone,
   Mail,
   Clock,
-  ArrowLeft,
   Building2,
 } from 'lucide-react';
 import { TranslationDictionary } from '../types';
 import TrustSection from '../components/sections/TrustSection';
+import Navbar from '../components/layout/Navbar';
 
 interface ContactPageProps {
   dict: TranslationDictionary;
@@ -65,40 +64,8 @@ export default function ContactPage({ dict, setIsContactOpen }: ContactPageProps
 
   return (
     <div className="min-h-screen bg-[#f3f6f3] text-[#111927] font-jakarta">
-      {/* Header */}
-      <header className="relative z-30 w-full border-b border-emerald-500/10 bg-white/80 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-20 flex items-center justify-between">
-          <Link
-            to="/"
-            className="flex items-center space-x-2 cursor-pointer group"
-          >
-            <svg
-              className="w-8 h-8 text-[#111927] transition-transform duration-300 group-hover:scale-105"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-              <circle cx="12" cy="13" r="2.5" />
-              <path d="M8.5 18.5a3.5 3.5 0 0 1 7 0" />
-            </svg>
-            <span className="text-2xl font-bold tracking-tight text-[#111927] select-none font-grotesk">
-              Taaxwala
-            </span>
-          </Link>
-
-          <Link
-            to="/"
-            className="flex items-center gap-2 text-gray-500 hover:text-[#3c8e59] transition-colors text-sm font-medium font-poppins"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Home
-          </Link>
-        </div>
-      </header>
+      {/* Navbar */}
+      <Navbar dict={dict} variant="light" />
 
       {/* Trust Section */}
       <TrustSection dict={dict} setIsContactOpen={setIsContactOpen} />

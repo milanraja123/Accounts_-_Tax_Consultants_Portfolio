@@ -24,6 +24,15 @@ import {
 
 // Pages
 import ContactPage from './pages/ContactPage';
+import IncomeTaxFilingPage from './pages/IncomeTaxFilingPage';
+import ISOCertificationPage from './pages/ISOCertificationPage';
+import GSTRegistrationPage from './pages/GSTRegistrationPage';
+import GSTReturnFilingPage from './pages/GSTReturnFilingPage';
+import MSMERegistrationPage from './pages/MSMERegistrationPage';
+import PrivateLimitedCompanyPage from './pages/PrivateLimitedCompanyPage';
+import ProprietorshipFirmPage from './pages/ProprietorshipFirmPage';
+import FSSAIRegistrationPage from './pages/FSSAIRegistrationPage';
+import TrademarkRegistrationPage from './pages/TrademarkRegistrationPage';
 
 // Other Components
 import ContactModal from './components/ContactModal';
@@ -119,12 +128,183 @@ function ContactPageWrapper() {
   );
 }
 
+// Income Tax Filing Page Wrapper
+function IncomeTaxFilingPageWrapper() {
+  const [lang] = useState<Language>('EN');
+  const [isContactOpen, setIsContactOpen] = useState(false);
+  const dict = translations[lang];
+
+  return (
+    <>
+      <IncomeTaxFilingPage dict={dict} setIsContactOpen={setIsContactOpen} />
+      <ContactModal
+        isOpen={isContactOpen}
+        onClose={() => setIsContactOpen(false)}
+        dict={dict}
+      />
+    </>
+  );
+}
+
+// ISO Certification Page Wrapper
+function ISOCertificationPageWrapper() {
+  const [lang] = useState<Language>('EN');
+  const [isContactOpen, setIsContactOpen] = useState(false);
+  const dict = translations[lang];
+
+  return (
+    <>
+      <ISOCertificationPage dict={dict} setIsContactOpen={setIsContactOpen} />
+      <ContactModal
+        isOpen={isContactOpen}
+        onClose={() => setIsContactOpen(false)}
+        dict={dict}
+      />
+    </>
+  );
+}
+
+// GST Registration Page Wrapper
+function GSTRegistrationPageWrapper() {
+  const [lang] = useState<Language>('EN');
+  const [isContactOpen, setIsContactOpen] = useState(false);
+  const dict = translations[lang];
+
+  return (
+    <>
+      <GSTRegistrationPage dict={dict} setIsContactOpen={setIsContactOpen} />
+      <ContactModal
+        isOpen={isContactOpen}
+        onClose={() => setIsContactOpen(false)}
+        dict={dict}
+      />
+    </>
+  );
+}
+
+// GST Return Filing Page Wrapper
+function GSTReturnFilingPageWrapper() {
+  const [lang] = useState<Language>('EN');
+  const [isContactOpen, setIsContactOpen] = useState(false);
+  const dict = translations[lang];
+
+  return (
+    <>
+      <GSTReturnFilingPage dict={dict} setIsContactOpen={setIsContactOpen} />
+      <ContactModal
+        isOpen={isContactOpen}
+        onClose={() => setIsContactOpen(false)}
+        dict={dict}
+      />
+    </>
+  );
+}
+
+// MSME Registration Page Wrapper
+function MSMERegistrationPageWrapper() {
+  const [lang] = useState<Language>('EN');
+  const [isContactOpen, setIsContactOpen] = useState(false);
+  const dict = translations[lang];
+
+  return (
+    <>
+      <MSMERegistrationPage dict={dict} setIsContactOpen={setIsContactOpen} />
+      <ContactModal
+        isOpen={isContactOpen}
+        onClose={() => setIsContactOpen(false)}
+        dict={dict}
+      />
+    </>
+  );
+}
+
+// Private Limited Company Page Wrapper
+function PrivateLimitedCompanyPageWrapper() {
+  const [lang] = useState<Language>('EN');
+  const [isContactOpen, setIsContactOpen] = useState(false);
+  const dict = translations[lang];
+
+  return (
+    <>
+      <PrivateLimitedCompanyPage dict={dict} setIsContactOpen={setIsContactOpen} />
+      <ContactModal
+        isOpen={isContactOpen}
+        onClose={() => setIsContactOpen(false)}
+        dict={dict}
+      />
+    </>
+  );
+}
+
+// Proprietorship Firm Page Wrapper
+function ProprietorshipFirmPageWrapper() {
+  const [lang] = useState<Language>('EN');
+  const [isContactOpen, setIsContactOpen] = useState(false);
+  const dict = translations[lang];
+
+  return (
+    <>
+      <ProprietorshipFirmPage dict={dict} setIsContactOpen={setIsContactOpen} />
+      <ContactModal
+        isOpen={isContactOpen}
+        onClose={() => setIsContactOpen(false)}
+        dict={dict}
+      />
+    </>
+  );
+}
+
+// FSSAI Registration Page Wrapper
+function FSSAIRegistrationPageWrapper() {
+  const [lang] = useState<Language>('EN');
+  const [isContactOpen, setIsContactOpen] = useState(false);
+  const dict = translations[lang];
+
+  return (
+    <>
+      <FSSAIRegistrationPage dict={dict} setIsContactOpen={setIsContactOpen} />
+      <ContactModal
+        isOpen={isContactOpen}
+        onClose={() => setIsContactOpen(false)}
+        dict={dict}
+      />
+    </>
+  );
+}
+
+// Trademark Registration Page Wrapper
+function TrademarkRegistrationPageWrapper() {
+  const [lang] = useState<Language>('EN');
+  const [isContactOpen, setIsContactOpen] = useState(false);
+  const dict = translations[lang];
+
+  return (
+    <>
+      <TrademarkRegistrationPage dict={dict} setIsContactOpen={setIsContactOpen} />
+      <ContactModal
+        isOpen={isContactOpen}
+        onClose={() => setIsContactOpen(false)}
+        dict={dict}
+      />
+    </>
+  );
+}
+
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/contact" element={<ContactPageWrapper />} />
+        <Route path="/income-tax-filing" element={<IncomeTaxFilingPageWrapper />} />
+        <Route path="/iso-certification" element={<ISOCertificationPageWrapper />} />
+        <Route path="/gst-registration" element={<GSTRegistrationPageWrapper />} />
+        <Route path="/gst-return-filing" element={<GSTReturnFilingPageWrapper />} />
+        <Route path="/msme-registration" element={<MSMERegistrationPageWrapper />} />
+        <Route path="/private-limited-company-registration" element={<PrivateLimitedCompanyPageWrapper />} />
+        <Route path="/proprietorship-firm-registration" element={<ProprietorshipFirmPageWrapper />} />
+        <Route path="/fssai-registration" element={<FSSAIRegistrationPageWrapper />} />
+        <Route path="/trademark-registration" element={<TrademarkRegistrationPageWrapper />} />
       </Routes>
     </BrowserRouter>
   );

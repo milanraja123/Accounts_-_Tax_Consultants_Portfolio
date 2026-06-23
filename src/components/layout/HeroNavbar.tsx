@@ -5,29 +5,17 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Menu,
   X,
   ChevronDown,
-  FileText,
-  BookOpen,
-  Wallet,
-  TrendingUp,
-  ClipboardCheck,
-  PiggyBank,
   Building2,
   Briefcase,
-  Users,
-  Scale,
   BadgeCheck,
   Receipt,
   FileCheck,
   ShieldCheck,
-  HelpCircle,
-  MessageCircle,
-  Headphones,
-  Mail,
 } from 'lucide-react';
 import { TranslationDictionary } from '../../types';
 
@@ -38,50 +26,58 @@ interface HeroNavbarProps {
 
 // Sub-navigation dropdown definitions
 const navDropdowns: Record<string, Array<{ label: string; desc: string; icon: any }>> = {
-  'Popular Services': [
-    { label: 'Tax Filing', desc: 'Quick and accurate tax return filing.', icon: FileText },
-    { label: 'Bookkeeping', desc: 'Professional bookkeeping services.', icon: BookOpen },
-    { label: 'Payroll Services', desc: 'Hassle-free payroll management.', icon: Wallet },
-    { label: 'Financial Planning', desc: 'Strategic financial advisory.', icon: TrendingUp },
-    { label: 'Audit Services', desc: 'Comprehensive audit solutions.', icon: ClipboardCheck },
-    { label: 'Investment Advisory', desc: 'Smart investment strategies.', icon: PiggyBank },
-  ],
   'Business Registration': [
-    { label: 'Company Formation', desc: 'Register your new business entity.', icon: Building2 },
+    { label: 'Private Limited Company', desc: 'Register your Pvt Ltd company.', icon: Building2 },
     { label: 'Sole Proprietorship', desc: 'Start as a sole trader easily.', icon: Briefcase },
-    { label: 'Partnership Registration', desc: 'Register partnership firms.', icon: Users },
-    { label: 'LLP Registration', desc: 'Limited Liability Partnership setup.', icon: Scale },
     { label: 'Trademark Registration', desc: 'Protect your brand identity.', icon: BadgeCheck },
+    { label: 'ISO Certification', desc: 'Get ISO certified for your business.', icon: ShieldCheck },
+    { label: 'MSME Registration', desc: 'Register under MSME for benefits.', icon: Building2 },
+    { label: 'FSSAI Registration', desc: 'Food license for food businesses.', icon: ShieldCheck },
   ],
   'GST Services': [
     { label: 'GST Registration', desc: 'Get your GST number quickly.', icon: Receipt },
     { label: 'GST Return Filing', desc: 'Timely GST return submissions.', icon: FileCheck },
-    { label: 'GST Compliance', desc: 'Stay compliant with GST rules.', icon: ShieldCheck },
-    { label: 'GST Audit', desc: 'Professional GST audit services.', icon: ClipboardCheck },
-    { label: 'GST Refund', desc: 'Claim your GST refunds.', icon: Wallet },
-  ],
-  'Support': [
-    { label: 'Help Center', desc: 'Find answers to common questions.', icon: HelpCircle },
-    { label: 'Live Chat', desc: 'Chat with our support team.', icon: MessageCircle },
-    { label: 'Call Support', desc: '24/7 phone support available.', icon: Headphones },
-    { label: 'Knowledge Base', desc: 'Articles and tutorials.', icon: BookOpen },
-    { label: 'Contact Us', desc: 'Get in touch with our team.', icon: Mail },
   ],
 };
 
 const navItems = [
   'Home',
-  'Popular Services',
+  'Tax Filing',
   'Business Registration',
   'GST Services',
-  'Support',
   'About',
 ];
 
+// Route mapping for nav items and dropdown items
+const serviceRoutes: Record<string, string> = {
+  'Home': '/',
+  'Tax Filing': '/income-tax-filing',
+  'About': '/#about',
+  'Contact Us': '/contact',
+  'ISO Certification': '/iso-certification',
+  'GST Registration': '/gst-registration',
+  'GST Return Filing': '/gst-return-filing',
+  'MSME Registration': '/msme-registration',
+  'Private Limited Company': '/private-limited-company-registration',
+  'Sole Proprietorship': '/proprietorship-firm-registration',
+  'FSSAI Registration': '/fssai-registration',
+  'Trademark Registration': '/trademark-registration',
+};
+
 export default function HeroNavbar({ dict, setIsContactOpen }: HeroNavbarProps) {
+  const navigate = useNavigate();
   const [activeLink, setActiveLink] = useState("Home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+
+  const handleServiceClick = (label: string) => {
+    setActiveDropdown(null);
+    if (serviceRoutes[label]) {
+      navigate(serviceRoutes[label]);
+    } else if (label === 'Live Chat') {
+      setIsContactOpen(true);
+    }
+  };
 
   return (
     <>
@@ -120,6 +116,7 @@ export default function HeroNavbar({ dict, setIsContactOpen }: HeroNavbarProps) 
             {navItems.map((item) => {
               const hasDropdown = !!navDropdowns[item];
               const isSelected = activeDropdown === item;
+              const hasRoute = !!serviceRoutes[item];
 
               return (
                 <div
@@ -128,31 +125,51 @@ export default function HeroNavbar({ dict, setIsContactOpen }: HeroNavbarProps) 
                   onMouseEnter={() => hasDropdown && setActiveDropdown(item)}
                   onMouseLeave={() => hasDropdown && setActiveDropdown(null)}
                 >
-                  <button
-                    onClick={() => setActiveLink(item)}
-                    className={`relative flex items-center py-2 px-3 text-sm font-medium tracking-wide transition-colors duration-200 cursor-pointer font-poppins ${
-                      activeLink === item
-                        ? "text-white"
-                        : "text-white/70 hover:text-white"
-                    }`}
-                  >
-                    {item}
-                    {hasDropdown && (
-                      <ChevronDown
-                        className={`h-3.5 w-3.5 ml-1 text-white/50 transition-transform duration-200 ${
-                          isSelected ? 'rotate-180' : ''
-                        }`}
-                      />
-                    )}
-                    {/* Active Underline (Animated) */}
-                    {activeLink === item && (
-                      <motion.div
-                        layoutId="heroActiveUnderline"
-                        className="absolute bottom-0 left-3 right-3 h-[2px] bg-white"
-                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                      />
-                    )}
-                  </button>
+                  {hasRoute ? (
+                    <Link
+                      to={serviceRoutes[item]}
+                      onClick={() => setActiveLink(item)}
+                      className={`relative flex items-center py-2 px-3 text-sm font-medium tracking-wide transition-colors duration-200 cursor-pointer font-poppins ${
+                        activeLink === item
+                          ? "text-white"
+                          : "text-white/70 hover:text-white"
+                      }`}
+                    >
+                      {item}
+                      {activeLink === item && (
+                        <motion.div
+                          layoutId="heroActiveUnderline"
+                          className="absolute bottom-0 left-3 right-3 h-[2px] bg-white"
+                          transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                        />
+                      )}
+                    </Link>
+                  ) : (
+                    <button
+                      onClick={() => setActiveLink(item)}
+                      className={`relative flex items-center py-2 px-3 text-sm font-medium tracking-wide transition-colors duration-200 cursor-pointer font-poppins ${
+                        activeLink === item
+                          ? "text-white"
+                          : "text-white/70 hover:text-white"
+                      }`}
+                    >
+                      {item}
+                      {hasDropdown && (
+                        <ChevronDown
+                          className={`h-3.5 w-3.5 ml-1 text-white/50 transition-transform duration-200 ${
+                            isSelected ? 'rotate-180' : ''
+                          }`}
+                        />
+                      )}
+                      {activeLink === item && (
+                        <motion.div
+                          layoutId="heroActiveUnderline"
+                          className="absolute bottom-0 left-3 right-3 h-[2px] bg-white"
+                          transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                        />
+                      )}
+                    </button>
+                  )}
 
                   {/* Dropdown Menu */}
                   <AnimatePresence>
@@ -186,11 +203,8 @@ export default function HeroNavbar({ dict, setIsContactOpen }: HeroNavbarProps) 
                                 key={sidx}
                                 className="flex items-start gap-3 p-3 rounded-xl hover:bg-white/10 transition-all duration-200 cursor-pointer group/item border border-transparent hover:border-white/20 hover:shadow-lg hover:shadow-purple-500/10"
                                 onClick={() => {
-                                  setActiveDropdown(null);
                                   setActiveLink(item);
-                                  if (sub.label === 'Contact Us' || sub.label === 'Live Chat') {
-                                    setIsContactOpen(true);
-                                  }
+                                  handleServiceClick(sub.label);
                                 }}
                               >
                                 <div className="p-2.5 rounded-xl bg-white/10 backdrop-blur-sm text-white/90 group-hover/item:bg-gradient-to-br group-hover/item:from-purple-500/40 group-hover/item:to-purple-600/30 group-hover/item:text-white transition-all duration-200 flex-shrink-0 border border-white/5 group-hover/item:border-purple-400/30 group-hover/item:shadow-lg group-hover/item:shadow-purple-500/20">
@@ -270,33 +284,51 @@ export default function HeroNavbar({ dict, setIsContactOpen }: HeroNavbarProps) 
           >
             {navItems.map((item) => {
               const hasDropdown = !!navDropdowns[item];
+              const hasRoute = !!serviceRoutes[item];
 
               return (
                 <div key={item} className="border-b border-white/5 last:border-b-0">
-                  <button
-                    onClick={() => {
-                      if (hasDropdown) {
-                        setActiveDropdown(activeDropdown === item ? null : item);
-                      } else {
+                  {hasRoute ? (
+                    <Link
+                      to={serviceRoutes[item]}
+                      onClick={() => {
                         setActiveLink(item);
                         setMobileMenuOpen(false);
-                      }
-                    }}
-                    className={`flex items-center justify-between w-full text-left text-base font-semibold py-3 tracking-wide transition-all duration-150 cursor-pointer font-poppins ${
-                      activeLink === item
-                        ? "text-white"
-                        : "text-white/60 hover:text-white"
-                    }`}
-                  >
-                    <span>{item}</span>
-                    {hasDropdown && (
-                      <ChevronDown
-                        className={`h-4 w-4 text-white/40 transition-transform duration-200 ${
-                          activeDropdown === item ? 'rotate-180' : ''
-                        }`}
-                      />
-                    )}
-                  </button>
+                      }}
+                      className={`flex items-center justify-between w-full text-left text-base font-semibold py-3 tracking-wide transition-all duration-150 cursor-pointer font-poppins ${
+                        activeLink === item
+                          ? "text-white"
+                          : "text-white/60 hover:text-white"
+                      }`}
+                    >
+                      <span>{item}</span>
+                    </Link>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        if (hasDropdown) {
+                          setActiveDropdown(activeDropdown === item ? null : item);
+                        } else {
+                          setActiveLink(item);
+                          setMobileMenuOpen(false);
+                        }
+                      }}
+                      className={`flex items-center justify-between w-full text-left text-base font-semibold py-3 tracking-wide transition-all duration-150 cursor-pointer font-poppins ${
+                        activeLink === item
+                          ? "text-white"
+                          : "text-white/60 hover:text-white"
+                      }`}
+                    >
+                      <span>{item}</span>
+                      {hasDropdown && (
+                        <ChevronDown
+                          className={`h-4 w-4 text-white/40 transition-transform duration-200 ${
+                            activeDropdown === item ? 'rotate-180' : ''
+                          }`}
+                        />
+                      )}
+                    </button>
+                  )}
 
                   {/* Mobile Sub-menu */}
                   <AnimatePresence>
@@ -314,11 +346,8 @@ export default function HeroNavbar({ dict, setIsContactOpen }: HeroNavbarProps) 
                               key={sidx}
                               onClick={() => {
                                 setMobileMenuOpen(false);
-                                setActiveDropdown(null);
                                 setActiveLink(item);
-                                if (sub.label === 'Contact Us' || sub.label === 'Live Chat') {
-                                  setIsContactOpen(true);
-                                }
+                                handleServiceClick(sub.label);
                               }}
                               className="flex items-center gap-3 w-full text-left py-2.5 px-3 rounded-lg hover:bg-white/5 transition-colors border border-transparent hover:border-white/10"
                             >
