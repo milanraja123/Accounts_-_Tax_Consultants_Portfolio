@@ -567,6 +567,181 @@ export default function ProprietorshipFirmPage({ dict, setIsContactOpen }: Propr
           </div>
         </motion.section>
 
+        {/* Steps for Startups */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-16"
+        >
+          <h2 className="text-2xl md:text-3xl font-extrabold text-[#111927] mb-6 font-grotesk">
+            Steps to Register Sole Proprietorship Firm in India for Startups
+          </h2>
+          <p className="text-gray-600 leading-relaxed font-opensans mb-6">
+            For convenience, we divide all valid license certificates into 2 categories:
+          </p>
+
+          {/* Tax Registration */}
+          <div className="bg-white border border-emerald-500/5 rounded-2xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.08)] mb-6">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center">
+                <Receipt className="w-5 h-5 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-[#111927] font-poppins">A) Tax Registration (GST Registration)</h3>
+            </div>
+            <p className="text-gray-600 leading-relaxed font-opensans mb-4">
+              From 1st July 2017, the Government of India imposed GST on all businesses. GST is a uniform tax replacing Service Tax, VAT/CST Registration, TIN Number, etc.
+            </p>
+            <p className="text-gray-600 leading-relaxed font-opensans mb-4">
+              GST Registration is required when turnover crosses <strong>20 lakh rupees/year</strong> (10 lakh in northeast states). However, GST is mandatory from the start in these cases:
+            </p>
+            <ul className="space-y-2 mb-6">
+              <li className="flex items-start gap-2 text-sm text-gray-600 font-opensans">
+                <CheckCircle className="w-4 h-4 text-blue-500 flex-shrink-0 mt-0.5" />
+                <span>Inter-state supply of goods and services anywhere in India</span>
+              </li>
+              <li className="flex items-start gap-2 text-sm text-gray-600 font-opensans">
+                <CheckCircle className="w-4 h-4 text-blue-500 flex-shrink-0 mt-0.5" />
+                <span>Trading/retail and suppliers are registered under GST</span>
+              </li>
+              <li className="flex items-start gap-2 text-sm text-gray-600 font-opensans">
+                <CheckCircle className="w-4 h-4 text-blue-500 flex-shrink-0 mt-0.5" />
+                <span>Online e-commerce or internet-related business</span>
+              </li>
+            </ul>
+
+            <div className="bg-blue-50 rounded-xl p-5 border border-blue-200">
+              <h4 className="text-base font-bold text-blue-700 mb-3 font-poppins">Documents Required for GST:</h4>
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                <li className="flex items-center gap-2 text-sm text-blue-700 font-opensans">
+                  <FileCheck className="w-4 h-4" />
+                  <span>Personal PAN Card Copy</span>
+                </li>
+                <li className="flex items-center gap-2 text-sm text-blue-700 font-opensans">
+                  <FileCheck className="w-4 h-4" />
+                  <span>Aadhaar Card Copy</span>
+                </li>
+                <li className="flex items-center gap-2 text-sm text-blue-700 font-opensans">
+                  <FileCheck className="w-4 h-4" />
+                  <span>Electricity Bill of Business Location</span>
+                </li>
+                <li className="flex items-center gap-2 text-sm text-blue-700 font-opensans">
+                  <FileCheck className="w-4 h-4" />
+                  <span>Bank Statement / Cancel Cheque</span>
+                </li>
+                <li className="flex items-center gap-2 text-sm text-blue-700 font-opensans">
+                  <FileCheck className="w-4 h-4" />
+                  <span>Passport Size Photograph</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Basic Licenses */}
+          <div className="bg-white border border-emerald-500/5 rounded-2xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.08)]">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center">
+                <BadgeCheck className="w-5 h-5 text-[#3c8e59]" />
+              </div>
+              <h3 className="text-xl font-bold text-[#111927] font-poppins">B) Basic Local/Central Government Licenses</h3>
+            </div>
+            <p className="text-gray-600 leading-relaxed font-opensans mb-4">
+              Most banks require minimum 2 valid certifications out of 4 in this category:
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="bg-[#ebf4ee] rounded-xl p-4 border border-[#3c8e59]/20">
+                <h4 className="font-bold text-[#111927] mb-2 font-poppins flex items-center gap-2">
+                  <Award className="w-4 h-4 text-[#3c8e59]" />
+                  CA Certificate
+                </h4>
+                <p className="text-xs text-gray-600 font-opensans">
+                  Issued by ICAI practicing members. Verifies documents and information of the sole proprietor.
+                </p>
+                <p className="text-xs text-amber-600 mt-2 font-opensans italic">
+                  Note: Some private banks may not accept CA Certificate - confirm with your bank.
+                </p>
+              </div>
+
+              <div className="bg-[#ebf4ee] rounded-xl p-4 border border-[#3c8e59]/20">
+                <h4 className="font-bold text-[#111927] mb-2 font-poppins flex items-center gap-2">
+                  <Building2 className="w-4 h-4 text-[#3c8e59]" />
+                  MSME Registration
+                </h4>
+                <p className="text-xs text-gray-600 font-opensans">
+                  Government body for small business formation. Issues registration certificate on proprietorship firm name.
+                </p>
+                <p className="text-xs text-amber-600 mt-2 font-opensans italic">
+                  Note: Some private banks may not accept MSME - confirm with your bank.
+                </p>
+              </div>
+
+              <div className="bg-gray-100 rounded-xl p-4 border border-gray-200">
+                <h4 className="font-bold text-[#111927] mb-2 font-poppins flex items-center gap-2">
+                  <FileText className="w-4 h-4 text-gray-600" />
+                  Income Tax Return (Business ITR)
+                </h4>
+                <p className="text-xs text-gray-600 font-opensans">
+                  Only for old traditional businesses already running. New businesses can't file ITR without data.
+                </p>
+              </div>
+
+              <div className="bg-gray-100 rounded-xl p-4 border border-gray-200">
+                <h4 className="font-bold text-[#111927] mb-2 font-poppins flex items-center gap-2">
+                  <Briefcase className="w-4 h-4 text-gray-600" />
+                  Shop Act License
+                </h4>
+                <p className="text-xs text-gray-600 font-opensans">
+                  For physical shops. Issued by municipal party. Very expensive in some states - avoid if possible.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-6 p-4 bg-[#3c8e59]/10 rounded-xl border border-[#3c8e59]/20">
+              <p className="text-sm text-[#111927] font-opensans">
+                <strong>Our Recommendation:</strong> Go with CA Certification + MSME Registration Certificate or CA + Income Tax Return. These are government-issued and allow you to run business anywhere in India.
+              </p>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Conclusion */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-16"
+        >
+          <h2 className="text-2xl md:text-3xl font-extrabold text-[#111927] mb-6 font-grotesk">
+            Conclusion
+          </h2>
+          <div className="bg-white border border-emerald-500/5 rounded-2xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.08)]">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-blue-50 rounded-xl p-5 border border-blue-200">
+                <h3 className="text-lg font-bold text-blue-700 mb-3 font-poppins flex items-center gap-2">
+                  <Receipt className="w-5 h-5" />
+                  Option 1: GST Registration
+                </h3>
+                <p className="text-sm text-blue-700 font-opensans">
+                  Choose this when starting a business and GST Registration is mandatory or voluntary due to business nature and legal conditions mentioned above.
+                </p>
+              </div>
+
+              <div className="bg-emerald-50 rounded-xl p-5 border border-emerald-200">
+                <h3 className="text-lg font-bold text-[#3c8e59] mb-3 font-poppins flex items-center gap-2">
+                  <BadgeCheck className="w-5 h-5" />
+                  Option 2: MSME + CA Certification
+                </h3>
+                <p className="text-sm text-[#3c8e59] font-opensans">
+                  Choose this when starting a very small business within state and GST Registration is not required in any condition.
+                </p>
+              </div>
+            </div>
+          </div>
+        </motion.section>
+
         {/* FAQ Section */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}

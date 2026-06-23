@@ -10,13 +10,13 @@ import {
   Menu,
   X,
   ChevronDown,
-  FileText,
   Building2,
   Briefcase,
   BadgeCheck,
   Receipt,
   FileCheck,
   ShieldCheck,
+  Users,
 } from 'lucide-react';
 import { TranslationDictionary } from '../../types';
 
@@ -26,14 +26,35 @@ interface NavbarProps {
 }
 
 // Sub-navigation dropdown definitions
-const navDropdowns: Record<string, Array<{ label: string; desc: string; icon: any }>> = {
-  'Business Registration': [
+const navDropdowns: Record<string, Array<{ label: string; desc: string; icon: any; subItems?: Array<{ label: string; desc: string; icon: any }> }>> = {
+  'Popular Services': [
     { label: 'Private Limited Company', desc: 'Register your Pvt Ltd company.', icon: Building2 },
     { label: 'Sole Proprietorship', desc: 'Start as a sole trader easily.', icon: Briefcase },
     { label: 'Trademark Registration', desc: 'Protect your brand identity.', icon: BadgeCheck },
     { label: 'ISO Certification', desc: 'Get ISO certified for your business.', icon: ShieldCheck },
     { label: 'MSME Registration', desc: 'Register under MSME for benefits.', icon: Building2 },
     { label: 'FSSAI Registration', desc: 'Food license for food businesses.', icon: ShieldCheck },
+  ],
+  'Business Registration': [
+    {
+      label: 'Firm Registration',
+      desc: 'Register your firm easily.',
+      icon: Briefcase,
+      subItems: [
+        { label: 'Proprietorship Registration', desc: 'Start as a sole trader.', icon: Briefcase },
+        { label: 'Partnership Firm', desc: 'Register partnership firms.', icon: Users },
+      ]
+    },
+    {
+      label: 'Company Registration',
+      desc: 'Register your company.',
+      icon: Building2,
+      subItems: [
+        { label: 'Private Limited Company', desc: 'Register Pvt Ltd company.', icon: Building2 },
+        { label: 'LLP Registration', desc: 'Limited Liability Partnership.', icon: Users },
+        { label: 'One Person Company', desc: 'OPC for single entrepreneur.', icon: Briefcase },
+      ]
+    },
   ],
   'GST Services': [
     { label: 'GST Registration', desc: 'Get your GST number quickly.', icon: Receipt },
@@ -44,6 +65,7 @@ const navDropdowns: Record<string, Array<{ label: string; desc: string; icon: an
 const navItems = [
   { label: 'Home', path: '/' },
   { label: 'Tax Filing', path: '/income-tax-filing' },
+  { label: 'Popular Services', path: null },
   { label: 'Business Registration', path: null },
   { label: 'GST Services', path: null },
   { label: 'About', path: '/#about' },
@@ -59,6 +81,10 @@ const serviceRoutes: Record<string, string> = {
   'MSME Registration': '/msme-registration',
   'Private Limited Company': '/private-limited-company-registration',
   'Sole Proprietorship': '/proprietorship-firm-registration',
+  'Proprietorship Registration': '/proprietorship-firm-registration',
+  'Partnership Firm': '/partnership-firm-registration',
+  'LLP Registration': '/llp-registration',
+  'One Person Company': '/one-person-company-registration',
   'FSSAI Registration': '/fssai-registration',
   'Trademark Registration': '/trademark-registration',
 };
@@ -68,6 +94,8 @@ export default function Navbar({ dict, variant = 'light' }: NavbarProps) {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [hoveredSubItem, setHoveredSubItem] = useState<string | null>(null);
+  const [expandedMobileSubItem, setExpandedMobileSubItem] = useState<string | null>(null);
 
   const isLight = variant === 'light';
 
@@ -175,31 +203,82 @@ export default function Navbar({ dict, variant = 'light' }: NavbarProps) {
                         <div className="space-y-1 max-h-[320px] overflow-y-auto scrollbar-thin">
                           {navDropdowns[item.label].map((sub, sidx) => {
                             const IconComp = sub.icon;
+                            const hasSubItems = sub.subItems && sub.subItems.length > 0;
+                            const isSubExpanded = hoveredSubItem === sub.label;
                             return (
                               <div
                                 key={sidx}
-                                className={`flex items-start gap-3 p-3 rounded-xl transition-all duration-200 cursor-pointer group/item border border-transparent ${
-                                  isLight
-                                    ? 'hover:bg-[#ebf4ee] hover:border-[#3c8e59]/20'
-                                    : 'hover:bg-white/10 hover:border-white/20'
-                                }`}
-                                onClick={() => handleServiceClick(sub.label)}
+                                onMouseEnter={() => hasSubItems && setHoveredSubItem(sub.label)}
+                                onMouseLeave={() => setHoveredSubItem(null)}
                               >
-                                <div className={`p-2.5 rounded-xl flex-shrink-0 transition-all duration-200 ${
-                                  isLight
-                                    ? 'bg-[#ebf4ee] text-[#3c8e59] group-hover/item:bg-[#3c8e59] group-hover/item:text-white'
-                                    : 'bg-white/10 text-white/90 group-hover/item:bg-purple-500/40 group-hover/item:text-white'
-                                }`}>
-                                  <IconComp className="h-4 w-4" />
-                                </div>
-                                <div className="min-w-0 flex-1">
-                                  <div className={`text-[13px] font-semibold font-poppins ${isLight ? 'text-[#111927]' : 'text-white/95'}`}>
-                                    {sub.label}
+                                <div
+                                  className={`flex items-start gap-3 p-3 rounded-xl transition-all duration-200 cursor-pointer group/item border border-transparent ${
+                                    isLight
+                                      ? 'hover:bg-[#ebf4ee] hover:border-[#3c8e59]/20'
+                                      : 'hover:bg-white/10 hover:border-white/20'
+                                  } ${isSubExpanded && isLight ? 'bg-[#ebf4ee]' : ''} ${isSubExpanded && !isLight ? 'bg-white/10' : ''}`}
+                                  onClick={() => !hasSubItems && handleServiceClick(sub.label)}
+                                >
+                                  <div className={`p-2.5 rounded-xl flex-shrink-0 transition-all duration-200 ${
+                                    isLight
+                                      ? 'bg-[#ebf4ee] text-[#3c8e59] group-hover/item:bg-[#3c8e59] group-hover/item:text-white'
+                                      : 'bg-white/10 text-white/90 group-hover/item:bg-purple-500/40 group-hover/item:text-white'
+                                  }`}>
+                                    <IconComp className="h-4 w-4" />
                                   </div>
-                                  <div className={`text-[11px] leading-relaxed mt-0.5 font-opensans ${isLight ? 'text-gray-500' : 'text-white/50'}`}>
-                                    {sub.desc}
+                                  <div className="min-w-0 flex-1">
+                                    <div className={`text-[13px] font-semibold font-poppins flex items-center justify-between ${isLight ? 'text-[#111927]' : 'text-white/95'}`}>
+                                      {sub.label}
+                                      {hasSubItems && (
+                                        <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${isSubExpanded ? 'rotate-180' : ''}`} />
+                                      )}
+                                    </div>
+                                    <div className={`text-[11px] leading-relaxed mt-0.5 font-opensans ${isLight ? 'text-gray-500' : 'text-white/50'}`}>
+                                      {sub.desc}
+                                    </div>
                                   </div>
                                 </div>
+
+                                {/* Inline Nested Submenu */}
+                                <AnimatePresence>
+                                  {hasSubItems && isSubExpanded && (
+                                    <motion.div
+                                      initial={{ opacity: 0, height: 0 }}
+                                      animate={{ opacity: 1, height: 'auto' }}
+                                      exit={{ opacity: 0, height: 0 }}
+                                      transition={{ duration: 0.2 }}
+                                      className="overflow-hidden"
+                                    >
+                                      <div className={`ml-6 mt-1 pl-4 border-l-2 ${isLight ? 'border-[#3c8e59]/30' : 'border-white/20'}`}>
+                                        {sub.subItems!.map((subItem, subIdx) => {
+                                          const SubIconComp = subItem.icon;
+                                          return (
+                                            <div
+                                              key={subIdx}
+                                              className={`flex items-center gap-3 p-2.5 rounded-lg transition-all duration-200 cursor-pointer group/subitem ${
+                                                isLight
+                                                  ? 'hover:bg-[#ebf4ee]'
+                                                  : 'hover:bg-white/10'
+                                              }`}
+                                              onClick={() => handleServiceClick(subItem.label)}
+                                            >
+                                              <div className={`p-1.5 rounded-lg flex-shrink-0 transition-all duration-200 ${
+                                                isLight
+                                                  ? 'bg-[#ebf4ee] text-[#3c8e59] group-hover/subitem:bg-[#3c8e59] group-hover/subitem:text-white'
+                                                  : 'bg-white/10 text-white/90 group-hover/subitem:bg-purple-500/40 group-hover/subitem:text-white'
+                                              }`}>
+                                                <SubIconComp className="h-3 w-3" />
+                                              </div>
+                                              <span className={`text-[12px] font-medium ${isLight ? 'text-gray-700' : 'text-white/90'}`}>
+                                                {subItem.label}
+                                              </span>
+                                            </div>
+                                          );
+                                        })}
+                                      </div>
+                                    </motion.div>
+                                  )}
+                                </AnimatePresence>
                               </div>
                             );
                           })}
@@ -296,21 +375,68 @@ export default function Navbar({ dict, variant = 'light' }: NavbarProps) {
                       >
                         {navDropdowns[item.label].map((sub, sidx) => {
                           const IconComp = sub.icon;
+                          const hasSubItems = sub.subItems && sub.subItems.length > 0;
                           return (
-                            <button
-                              key={sidx}
-                              onClick={() => handleServiceClick(sub.label)}
-                              className={`flex items-center gap-3 w-full text-left py-2.5 px-3 rounded-lg transition-colors border border-transparent ${
-                                isLight
-                                  ? 'hover:bg-[#ebf4ee] hover:border-[#3c8e59]/20'
-                                  : 'hover:bg-white/5 hover:border-white/10'
-                              }`}
-                            >
-                              <div className={`p-1.5 rounded-lg ${isLight ? 'bg-[#ebf4ee]' : 'bg-white/10'}`}>
-                                <IconComp className={`h-4 w-4 ${isLight ? 'text-[#3c8e59]' : 'text-white/70'}`} />
-                              </div>
-                              <span className={`text-sm font-medium ${isLight ? 'text-gray-600' : 'text-white/80'}`}>{sub.label}</span>
-                            </button>
+                            <div key={sidx}>
+                              <button
+                                onClick={() => {
+                                  if (hasSubItems) {
+                                    setExpandedMobileSubItem(expandedMobileSubItem === sub.label ? null : sub.label);
+                                  } else {
+                                    handleServiceClick(sub.label);
+                                  }
+                                }}
+                                className={`flex items-center gap-3 w-full text-left py-2.5 px-3 rounded-lg transition-colors border border-transparent ${
+                                  isLight
+                                    ? 'hover:bg-[#ebf4ee] hover:border-[#3c8e59]/20'
+                                    : 'hover:bg-white/5 hover:border-white/10'
+                                }`}
+                              >
+                                <div className={`p-1.5 rounded-lg ${isLight ? 'bg-[#ebf4ee]' : 'bg-white/10'}`}>
+                                  <IconComp className={`h-4 w-4 ${isLight ? 'text-[#3c8e59]' : 'text-white/70'}`} />
+                                </div>
+                                <span className={`text-sm font-medium flex-1 ${isLight ? 'text-gray-600' : 'text-white/80'}`}>{sub.label}</span>
+                                {hasSubItems && (
+                                  <ChevronDown
+                                    className={`h-3.5 w-3.5 transition-transform duration-200 ${isLight ? 'text-gray-400' : 'text-white/40'} ${
+                                      expandedMobileSubItem === sub.label ? 'rotate-180' : ''
+                                    }`}
+                                  />
+                                )}
+                              </button>
+
+                              {/* Mobile Nested Sub-menu */}
+                              <AnimatePresence>
+                                {hasSubItems && expandedMobileSubItem === sub.label && (
+                                  <motion.div
+                                    initial={{ opacity: 0, height: 0 }}
+                                    animate={{ opacity: 1, height: 'auto' }}
+                                    exit={{ opacity: 0, height: 0 }}
+                                    className="pl-6 pt-1 space-y-1"
+                                  >
+                                    {sub.subItems!.map((subItem, subIdx) => {
+                                      const SubIconComp = subItem.icon;
+                                      return (
+                                        <button
+                                          key={subIdx}
+                                          onClick={() => handleServiceClick(subItem.label)}
+                                          className={`flex items-center gap-3 w-full text-left py-2 px-3 rounded-lg transition-colors border border-transparent ${
+                                            isLight
+                                              ? 'hover:bg-[#ebf4ee] hover:border-[#3c8e59]/20'
+                                              : 'hover:bg-white/5 hover:border-white/10'
+                                          }`}
+                                        >
+                                          <div className={`p-1 rounded-lg ${isLight ? 'bg-[#ebf4ee]' : 'bg-white/10'}`}>
+                                            <SubIconComp className={`h-3.5 w-3.5 ${isLight ? 'text-[#3c8e59]' : 'text-white/70'}`} />
+                                          </div>
+                                          <span className={`text-xs font-medium ${isLight ? 'text-gray-600' : 'text-white/80'}`}>{subItem.label}</span>
+                                        </button>
+                                      );
+                                    })}
+                                  </motion.div>
+                                )}
+                              </AnimatePresence>
+                            </div>
                           );
                         })}
                       </motion.div>

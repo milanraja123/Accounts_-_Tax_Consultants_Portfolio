@@ -16,6 +16,7 @@ import {
   Receipt,
   FileCheck,
   ShieldCheck,
+  Users,
 } from 'lucide-react';
 import { TranslationDictionary } from '../../types';
 
@@ -25,14 +26,35 @@ interface HeroNavbarProps {
 }
 
 // Sub-navigation dropdown definitions
-const navDropdowns: Record<string, Array<{ label: string; desc: string; icon: any }>> = {
-  'Business Registration': [
+const navDropdowns: Record<string, Array<{ label: string; desc: string; icon: any; subItems?: Array<{ label: string; desc: string; icon: any }> }>> = {
+  'Popular Services': [
     { label: 'Private Limited Company', desc: 'Register your Pvt Ltd company.', icon: Building2 },
     { label: 'Sole Proprietorship', desc: 'Start as a sole trader easily.', icon: Briefcase },
     { label: 'Trademark Registration', desc: 'Protect your brand identity.', icon: BadgeCheck },
     { label: 'ISO Certification', desc: 'Get ISO certified for your business.', icon: ShieldCheck },
     { label: 'MSME Registration', desc: 'Register under MSME for benefits.', icon: Building2 },
     { label: 'FSSAI Registration', desc: 'Food license for food businesses.', icon: ShieldCheck },
+  ],
+  'Business Registration': [
+    {
+      label: 'Firm Registration',
+      desc: 'Register your firm easily.',
+      icon: Briefcase,
+      subItems: [
+        { label: 'Proprietorship Registration', desc: 'Start as a sole trader.', icon: Briefcase },
+        { label: 'Partnership Firm', desc: 'Register partnership firms.', icon: Users },
+      ]
+    },
+    {
+      label: 'Company Registration',
+      desc: 'Register your company.',
+      icon: Building2,
+      subItems: [
+        { label: 'Private Limited Company', desc: 'Register Pvt Ltd company.', icon: Building2 },
+        { label: 'LLP Registration', desc: 'Limited Liability Partnership.', icon: Users },
+        { label: 'One Person Company', desc: 'OPC for single entrepreneur.', icon: Briefcase },
+      ]
+    },
   ],
   'GST Services': [
     { label: 'GST Registration', desc: 'Get your GST number quickly.', icon: Receipt },
@@ -43,6 +65,7 @@ const navDropdowns: Record<string, Array<{ label: string; desc: string; icon: an
 const navItems = [
   'Home',
   'Tax Filing',
+  'Popular Services',
   'Business Registration',
   'GST Services',
   'About',
@@ -60,6 +83,10 @@ const serviceRoutes: Record<string, string> = {
   'MSME Registration': '/msme-registration',
   'Private Limited Company': '/private-limited-company-registration',
   'Sole Proprietorship': '/proprietorship-firm-registration',
+  'Proprietorship Registration': '/proprietorship-firm-registration',
+  'Partnership Firm': '/partnership-firm-registration',
+  'LLP Registration': '/llp-registration',
+  'One Person Company': '/one-person-company-registration',
   'FSSAI Registration': '/fssai-registration',
   'Trademark Registration': '/trademark-registration',
 };
@@ -69,6 +96,8 @@ export default function HeroNavbar({ dict, setIsContactOpen }: HeroNavbarProps) 
   const [activeLink, setActiveLink] = useState("Home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [hoveredSubItem, setHoveredSubItem] = useState<string | null>(null);
+  const [expandedMobileSubItem, setExpandedMobileSubItem] = useState<string | null>(null);
 
   const handleServiceClick = (label: string) => {
     setActiveDropdown(null);
@@ -198,27 +227,77 @@ export default function HeroNavbar({ dict, setIsContactOpen }: HeroNavbarProps) 
                         <div className="space-y-1 max-h-[320px] overflow-y-auto scrollbar-thin">
                           {navDropdowns[item].map((sub, sidx) => {
                             const IconComp = sub.icon;
+                            const hasSubItems = sub.subItems && sub.subItems.length > 0;
+                            const isSubExpanded = hoveredSubItem === sub.label;
                             return (
                               <div
                                 key={sidx}
-                                className="flex items-start gap-3 p-3 rounded-xl hover:bg-white/10 transition-all duration-200 cursor-pointer group/item border border-transparent hover:border-white/20 hover:shadow-lg hover:shadow-purple-500/10"
-                                onClick={() => {
-                                  setActiveLink(item);
-                                  handleServiceClick(sub.label);
-                                }}
+                                onMouseEnter={() => hasSubItems && setHoveredSubItem(sub.label)}
+                                onMouseLeave={() => setHoveredSubItem(null)}
                               >
-                                <div className="p-2.5 rounded-xl bg-white/10 backdrop-blur-sm text-white/90 group-hover/item:bg-gradient-to-br group-hover/item:from-purple-500/40 group-hover/item:to-purple-600/30 group-hover/item:text-white transition-all duration-200 flex-shrink-0 border border-white/5 group-hover/item:border-purple-400/30 group-hover/item:shadow-lg group-hover/item:shadow-purple-500/20">
-                                  <IconComp className="h-4 w-4" />
-                                </div>
-                                <div className="min-w-0 flex-1">
-                                  <div className="text-[13px] font-semibold text-white/95 group-hover/item:text-white font-poppins drop-shadow-sm">
-                                    {sub.label}
+                                <div
+                                  className={`flex items-start gap-3 p-3 rounded-xl hover:bg-white/10 transition-all duration-200 cursor-pointer group/item border border-transparent hover:border-white/20 hover:shadow-lg hover:shadow-purple-500/10 ${isSubExpanded ? 'bg-white/10' : ''}`}
+                                  onClick={() => {
+                                    if (!hasSubItems) {
+                                      setActiveLink(item);
+                                      handleServiceClick(sub.label);
+                                    }
+                                  }}
+                                >
+                                  <div className="p-2.5 rounded-xl bg-white/10 backdrop-blur-sm text-white/90 group-hover/item:bg-gradient-to-br group-hover/item:from-purple-500/40 group-hover/item:to-purple-600/30 group-hover/item:text-white transition-all duration-200 flex-shrink-0 border border-white/5 group-hover/item:border-purple-400/30 group-hover/item:shadow-lg group-hover/item:shadow-purple-500/20">
+                                    <IconComp className="h-4 w-4" />
                                   </div>
-                                  <div className="text-[11px] text-white/50 leading-relaxed mt-0.5 font-opensans group-hover/item:text-white/60">
-                                    {sub.desc}
+                                  <div className="min-w-0 flex-1">
+                                    <div className="text-[13px] font-semibold text-white/95 group-hover/item:text-white font-poppins drop-shadow-sm flex items-center justify-between">
+                                      {sub.label}
+                                      {hasSubItems && (
+                                        <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${isSubExpanded ? 'rotate-180' : ''}`} />
+                                      )}
+                                    </div>
+                                    <div className="text-[11px] text-white/50 leading-relaxed mt-0.5 font-opensans group-hover/item:text-white/60">
+                                      {sub.desc}
+                                    </div>
                                   </div>
+                                  {!hasSubItems && (
+                                    <ChevronDown className="h-3.5 w-3.5 text-white/30 -rotate-90 group-hover/item:text-purple-300 group-hover/item:translate-x-1 transition-all duration-200 flex-shrink-0 mt-1.5" />
+                                  )}
                                 </div>
-                                <ChevronDown className="h-3.5 w-3.5 text-white/30 -rotate-90 group-hover/item:text-purple-300 group-hover/item:translate-x-1 transition-all duration-200 flex-shrink-0 mt-1.5" />
+
+                                {/* Inline Nested Submenu */}
+                                <AnimatePresence>
+                                  {hasSubItems && isSubExpanded && (
+                                    <motion.div
+                                      initial={{ opacity: 0, height: 0 }}
+                                      animate={{ opacity: 1, height: 'auto' }}
+                                      exit={{ opacity: 0, height: 0 }}
+                                      transition={{ duration: 0.2 }}
+                                      className="overflow-hidden"
+                                    >
+                                      <div className="ml-6 mt-1 pl-4 border-l-2 border-purple-400/30">
+                                        {sub.subItems!.map((subItem, subIdx) => {
+                                          const SubIconComp = subItem.icon;
+                                          return (
+                                            <div
+                                              key={subIdx}
+                                              className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-white/10 transition-all duration-200 cursor-pointer group/subitem"
+                                              onClick={() => {
+                                                setActiveLink(item);
+                                                handleServiceClick(subItem.label);
+                                              }}
+                                            >
+                                              <div className="p-1.5 rounded-lg bg-white/10 text-white/90 group-hover/subitem:bg-purple-500/40 group-hover/subitem:text-white transition-all duration-200 flex-shrink-0">
+                                                <SubIconComp className="h-3 w-3" />
+                                              </div>
+                                              <span className="text-[12px] font-medium text-white/90">
+                                                {subItem.label}
+                                              </span>
+                                            </div>
+                                          );
+                                        })}
+                                      </div>
+                                    </motion.div>
+                                  )}
+                                </AnimatePresence>
                               </div>
                             );
                           })}
@@ -341,21 +420,66 @@ export default function HeroNavbar({ dict, setIsContactOpen }: HeroNavbarProps) 
                       >
                         {navDropdowns[item].map((sub, sidx) => {
                           const IconComp = sub.icon;
+                          const hasSubItems = sub.subItems && sub.subItems.length > 0;
                           return (
-                            <button
-                              key={sidx}
-                              onClick={() => {
-                                setMobileMenuOpen(false);
-                                setActiveLink(item);
-                                handleServiceClick(sub.label);
-                              }}
-                              className="flex items-center gap-3 w-full text-left py-2.5 px-3 rounded-lg hover:bg-white/5 transition-colors border border-transparent hover:border-white/10"
-                            >
-                              <div className="p-1.5 rounded-lg bg-white/10">
-                                <IconComp className="h-4 w-4 text-white/70" />
-                              </div>
-                              <span className="text-sm font-medium text-white/80">{sub.label}</span>
-                            </button>
+                            <div key={sidx}>
+                              <button
+                                onClick={() => {
+                                  if (hasSubItems) {
+                                    setExpandedMobileSubItem(expandedMobileSubItem === sub.label ? null : sub.label);
+                                  } else {
+                                    setMobileMenuOpen(false);
+                                    setActiveLink(item);
+                                    handleServiceClick(sub.label);
+                                  }
+                                }}
+                                className="flex items-center gap-3 w-full text-left py-2.5 px-3 rounded-lg hover:bg-white/5 transition-colors border border-transparent hover:border-white/10"
+                              >
+                                <div className="p-1.5 rounded-lg bg-white/10">
+                                  <IconComp className="h-4 w-4 text-white/70" />
+                                </div>
+                                <span className="text-sm font-medium text-white/80 flex-1">{sub.label}</span>
+                                {hasSubItems && (
+                                  <ChevronDown
+                                    className={`h-3.5 w-3.5 text-white/40 transition-transform duration-200 ${
+                                      expandedMobileSubItem === sub.label ? 'rotate-180' : ''
+                                    }`}
+                                  />
+                                )}
+                              </button>
+
+                              {/* Mobile Nested Sub-menu */}
+                              <AnimatePresence>
+                                {hasSubItems && expandedMobileSubItem === sub.label && (
+                                  <motion.div
+                                    initial={{ opacity: 0, height: 0 }}
+                                    animate={{ opacity: 1, height: 'auto' }}
+                                    exit={{ opacity: 0, height: 0 }}
+                                    className="pl-6 pt-1 space-y-1"
+                                  >
+                                    {sub.subItems!.map((subItem, subIdx) => {
+                                      const SubIconComp = subItem.icon;
+                                      return (
+                                        <button
+                                          key={subIdx}
+                                          onClick={() => {
+                                            setMobileMenuOpen(false);
+                                            setActiveLink(item);
+                                            handleServiceClick(subItem.label);
+                                          }}
+                                          className="flex items-center gap-3 w-full text-left py-2 px-3 rounded-lg hover:bg-white/5 transition-colors border border-transparent hover:border-white/10"
+                                        >
+                                          <div className="p-1 rounded-lg bg-white/10">
+                                            <SubIconComp className="h-3.5 w-3.5 text-white/70" />
+                                          </div>
+                                          <span className="text-xs font-medium text-white/80">{subItem.label}</span>
+                                        </button>
+                                      );
+                                    })}
+                                  </motion.div>
+                                )}
+                              </AnimatePresence>
+                            </div>
                           );
                         })}
                       </motion.div>

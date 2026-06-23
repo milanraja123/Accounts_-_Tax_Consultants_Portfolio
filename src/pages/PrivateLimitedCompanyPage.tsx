@@ -400,6 +400,233 @@ export default function PrivateLimitedCompanyPage({ dict, setIsContactOpen }: Pr
           </div>
         </motion.section>
 
+        {/* Step 1: Digital Signature Certificate */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-16"
+        >
+          <h2 className="text-2xl md:text-3xl font-extrabold text-[#111927] mb-6 font-grotesk">
+            Step 1: Apply for Digital Signature Certificate (DSC)
+          </h2>
+          <div className="bg-white border border-emerald-500/5 rounded-2xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.08)] space-y-4">
+            <p className="text-gray-600 leading-relaxed font-opensans">
+              In the starting of your pvt ltd company registration, the very first step is to apply for a <strong>Digital Signature Certificate (DSC)</strong>. DSC is used for uploading documents with the Ministry of Corporate Affairs.
+            </p>
+            <p className="text-gray-600 leading-relaxed font-opensans">
+              A digital signature is an electronic form used to verify the identity of the person sending an electronic document. It provides high security and verification of the document's authenticity.
+            </p>
+            <div className="bg-[#ebf4ee] rounded-xl p-6 border border-[#3c8e59]/20 mt-4">
+              <h4 className="font-semibold text-[#111927] mb-3 font-poppins">What is a Digital Signature?</h4>
+              <p className="text-sm text-gray-600 font-opensans leading-relaxed">
+                DSC will be delivered through a USB Token at your address via speed post. This USB Token works like a password/verification code during filing of company forms or documents on MCA Portal.
+              </p>
+            </div>
+            <div className="bg-amber-50 rounded-xl p-6 border border-amber-200 mt-4">
+              <h4 className="font-semibold text-amber-800 mb-3 font-poppins">DSC for Foreign Nationals:</h4>
+              <p className="text-sm text-amber-700 font-opensans leading-relaxed">
+                If you are a Foreign National and want to apply for DSC, you can apply with a verified Notary Copy or Apostille of Identity Proof and Address Proof.
+              </p>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Step 2: Director Identification Number */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-16"
+        >
+          <h2 className="text-2xl md:text-3xl font-extrabold text-[#111927] mb-6 font-grotesk">
+            Step 2: Apply for Director Identification Number (DIN)
+          </h2>
+          <div className="bg-white border border-emerald-500/5 rounded-2xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.08)] space-y-4">
+            <p className="text-gray-600 leading-relaxed font-opensans">
+              DIN stands for <strong>Director Identification Number</strong>. In private limited company, it is mandatory for every Director. DIN is an 8 Digit Unique Identification Number that is used as an identity in MCA e-Governance for Directors.
+            </p>
+            <p className="text-gray-600 leading-relaxed font-opensans">
+              It is mandatory for a new Director to have the DIN before the date of appointment. DIN once allotted remains valid for the lifetime of the person.
+            </p>
+            <div className="bg-[#ebf4ee] rounded-xl p-6 border border-[#3c8e59]/20 mt-4">
+              <h4 className="font-semibold text-[#111927] mb-3 font-poppins">Key Points about DIN:</h4>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2 text-sm text-gray-600 font-opensans">
+                  <CheckCircle className="w-4 h-4 text-[#3c8e59]" />
+                  8 Digit Unique Number issued by MCA
+                </li>
+                <li className="flex items-center gap-2 text-sm text-gray-600 font-opensans">
+                  <CheckCircle className="w-4 h-4 text-[#3c8e59]" />
+                  Valid for lifetime once allotted
+                </li>
+                <li className="flex items-center gap-2 text-sm text-gray-600 font-opensans">
+                  <CheckCircle className="w-4 h-4 text-[#3c8e59]" />
+                  Required before date of appointment as Director
+                </li>
+                <li className="flex items-center gap-2 text-sm text-gray-600 font-opensans">
+                  <CheckCircle className="w-4 h-4 text-[#3c8e59]" />
+                  Used as identity in MCA e-Governance system
+                </li>
+              </ul>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Step 3: Company Name Registration */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-16"
+        >
+          <h2 className="text-2xl md:text-3xl font-extrabold text-[#111927] mb-6 font-grotesk">
+            Step 3: Company Name Availability and Registration
+          </h2>
+          <div className="bg-white border border-emerald-500/5 rounded-2xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.08)] space-y-4">
+            <p className="text-gray-600 leading-relaxed font-opensans">
+              In private limited company, you need to choose a unique name. Once a company name is registered in MCA, no other company can use the same name - <strong>it's like Brand Registration!</strong>
+            </p>
+            <p className="text-gray-600 leading-relaxed font-opensans">
+              You need to provide 3-4 names during the approval process. MCA will check and approve based on name availability rules and regulations.
+            </p>
+            <div className="bg-[#ebf4ee] rounded-xl p-6 border border-[#3c8e59]/20 mt-4">
+              <h4 className="font-semibold text-[#111927] mb-3 font-poppins">Name Format Requirements:</h4>
+              <p className="text-sm text-gray-600 font-opensans leading-relaxed mb-3">
+                A company name must have three parts:
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-start gap-2 text-sm text-gray-600 font-opensans">
+                  <span className="font-semibold text-[#3c8e59]">1.</span>
+                  <span><strong>Core Portion:</strong> First name like Brand Name (e.g., "Taaxwala")</span>
+                </li>
+                <li className="flex items-start gap-2 text-sm text-gray-600 font-opensans">
+                  <span className="font-semibold text-[#3c8e59]">2.</span>
+                  <span><strong>Description Portion:</strong> What your business is about (e.g., "Consulting", "Technologies")</span>
+                </li>
+                <li className="flex items-start gap-2 text-sm text-gray-600 font-opensans">
+                  <span className="font-semibold text-[#3c8e59]">3.</span>
+                  <span><strong>Last Portion:</strong> Must be "Private Limited" for Pvt Ltd Company</span>
+                </li>
+              </ul>
+              <p className="text-sm text-[#3c8e59] font-semibold mt-4 font-poppins">
+                Example: Taaxwala Consulting Private Limited
+              </p>
+            </div>
+            <div className="bg-amber-50 rounded-xl p-6 border border-amber-200 mt-4">
+              <h4 className="font-semibold text-amber-800 mb-3 font-poppins">Important Notes:</h4>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2 text-sm text-amber-700 font-opensans">
+                  <CheckCircle className="w-4 h-4 text-amber-600" />
+                  Name should not be similar to existing registered companies
+                </li>
+                <li className="flex items-center gap-2 text-sm text-amber-700 font-opensans">
+                  <CheckCircle className="w-4 h-4 text-amber-600" />
+                  Avoid using government-related keywords
+                </li>
+                <li className="flex items-center gap-2 text-sm text-amber-700 font-opensans">
+                  <CheckCircle className="w-4 h-4 text-amber-600" />
+                  Name should not violate any trademark rights
+                </li>
+              </ul>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Step 4: MOA and AOA */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-16"
+        >
+          <h2 className="text-2xl md:text-3xl font-extrabold text-[#111927] mb-6 font-grotesk">
+            Step 4: Memorandum and Article of Association
+          </h2>
+          <div className="bg-white border border-emerald-500/5 rounded-2xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.08)] space-y-6">
+            <div>
+              <h3 className="text-lg font-bold text-[#111927] mb-3 font-poppins flex items-center gap-2">
+                <FileText className="w-5 h-5 text-[#3c8e59]" />
+                Memorandum of Association (MOA)
+              </h3>
+              <p className="text-gray-600 leading-relaxed font-opensans">
+                The Memorandum of Association (MOA) is the <strong>most important document</strong> of a Private Limited Company. It defines the scope of activities (objects) for which your company is registered.
+              </p>
+              <div className="mt-4 bg-[#ebf4ee] rounded-xl p-4 border border-[#3c8e59]/20">
+                <p className="text-sm text-gray-600 font-opensans">
+                  <strong>Key Contents:</strong> Company Name, Registered Office Address, Objects of Company, Liability Clause, Capital Clause, and Subscriber Details.
+                </p>
+              </div>
+            </div>
+
+            <div className="border-t border-gray-100 pt-6">
+              <h3 className="text-lg font-bold text-[#111927] mb-3 font-poppins flex items-center gap-2">
+                <Scale className="w-5 h-5 text-[#3c8e59]" />
+                Articles of Association (AOA)
+              </h3>
+              <p className="text-gray-600 leading-relaxed font-opensans">
+                The Articles of Association (AOA) contains the <strong>rules and regulations</strong> for the internal management of the company. It governs the relationship between the company and its members.
+              </p>
+              <div className="mt-4 bg-[#ebf4ee] rounded-xl p-4 border border-[#3c8e59]/20">
+                <p className="text-sm text-gray-600 font-opensans">
+                  <strong>Key Contents:</strong> Share Capital, Rights of Shareholders, Transfer of Shares, Meetings, Directors Powers, Dividends, Accounts, and Winding Up provisions.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-blue-50 rounded-xl p-6 border border-blue-200">
+              <h4 className="font-semibold text-blue-800 mb-3 font-poppins">E-MOA & E-AOA Filing:</h4>
+              <p className="text-sm text-blue-700 font-opensans leading-relaxed">
+                With SPICe+ form, E-MOA and E-AOA are filed electronically. No separate physical copies are required unless specifically requested. This makes the process faster and more efficient.
+              </p>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Why Choose Us */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-16"
+        >
+          <h2 className="text-2xl md:text-3xl font-extrabold text-[#111927] mb-6 font-grotesk">
+            Why Choose Taaxwala for Pvt Ltd Registration?
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { icon: Shield, title: '100% Safe & Secure', desc: 'Your documents are completely safe with us' },
+              { icon: Award, title: 'Expert CA Team', desc: 'Qualified Chartered Accountants handle your case' },
+              { icon: Clock, title: 'Quick Processing', desc: 'Registration completed in 10-15 days' },
+              { icon: CreditCard, title: 'Affordable Pricing', desc: 'Transparent pricing with no hidden charges' },
+            ].map((item, idx) => {
+              const IconComp = item.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -4 }}
+                  transition={{ duration: 0.3, delay: idx * 0.05 }}
+                  className="bg-white border border-emerald-500/5 rounded-2xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.08)] text-center"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-[#ebf4ee] flex items-center justify-center mx-auto mb-4">
+                    <IconComp className="w-6 h-6 text-[#3c8e59]" />
+                  </div>
+                  <h3 className="text-sm font-bold text-[#111927] mb-2 font-poppins">{item.title}</h3>
+                  <p className="text-xs text-gray-500 font-opensans">{item.desc}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </motion.section>
+
         {/* Documents Required */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}

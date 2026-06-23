@@ -33,6 +33,7 @@ import PrivateLimitedCompanyPage from './pages/PrivateLimitedCompanyPage';
 import ProprietorshipFirmPage from './pages/ProprietorshipFirmPage';
 import FSSAIRegistrationPage from './pages/FSSAIRegistrationPage';
 import TrademarkRegistrationPage from './pages/TrademarkRegistrationPage';
+import PartnershipFirmPage from './pages/PartnershipFirmPage';
 
 // Other Components
 import ContactModal from './components/ContactModal';
@@ -290,6 +291,24 @@ function TrademarkRegistrationPageWrapper() {
   );
 }
 
+// Partnership Firm Page Wrapper
+function PartnershipFirmPageWrapper() {
+  const [lang] = useState<Language>('EN');
+  const [isContactOpen, setIsContactOpen] = useState(false);
+  const dict = translations[lang];
+
+  return (
+    <>
+      <PartnershipFirmPage dict={dict} setIsContactOpen={setIsContactOpen} />
+      <ContactModal
+        isOpen={isContactOpen}
+        onClose={() => setIsContactOpen(false)}
+        dict={dict}
+      />
+    </>
+  );
+}
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -305,6 +324,7 @@ export default function App() {
         <Route path="/proprietorship-firm-registration" element={<ProprietorshipFirmPageWrapper />} />
         <Route path="/fssai-registration" element={<FSSAIRegistrationPageWrapper />} />
         <Route path="/trademark-registration" element={<TrademarkRegistrationPageWrapper />} />
+        <Route path="/partnership-firm-registration" element={<PartnershipFirmPageWrapper />} />
       </Routes>
     </BrowserRouter>
   );
