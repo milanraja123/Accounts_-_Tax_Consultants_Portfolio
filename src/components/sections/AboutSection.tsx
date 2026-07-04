@@ -77,7 +77,7 @@ export default function AboutSection({ dict, setIsContactOpen }: AboutSectionPro
             </p>
 
             {/* About Us Button */}
-            <div className="pt-2">
+            {/* <div className="pt-2">
               <button
                 id="about-us-section-cta-btn"
                 onClick={() => setIsContactOpen(true)}
@@ -85,7 +85,7 @@ export default function AboutSection({ dict, setIsContactOpen }: AboutSectionPro
               >
                 {dict.aboutUsBtn}
               </button>
-            </div>
+            </div> */}
           </motion.div>
 
         </div>

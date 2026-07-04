@@ -6,18 +6,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link, useNavigate } from 'react-router-dom';
-import {
-  Menu,
-  X,
-  ChevronDown,
-  Building2,
-  Briefcase,
-  BadgeCheck,
-  Receipt,
-  FileCheck,
-  ShieldCheck,
-  Users,
-} from 'lucide-react';
+import { Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
 import { TranslationDictionary } from '../../types';
 
 interface HeroNavbarProps {
@@ -25,87 +14,67 @@ interface HeroNavbarProps {
   setIsContactOpen: (open: boolean) => void;
 }
 
-// Sub-navigation dropdown definitions
-const navDropdowns: Record<string, Array<{ label: string; desc: string; icon: any; subItems?: Array<{ label: string; desc: string; icon: any }> }>> = {
-  'Popular Services': [
-    { label: 'Private Limited Company', desc: 'Register your Pvt Ltd company.', icon: Building2 },
-    { label: 'Sole Proprietorship', desc: 'Start as a sole trader easily.', icon: Briefcase },
-    { label: 'Trademark Registration', desc: 'Protect your brand identity.', icon: BadgeCheck },
-    { label: 'ISO Certification', desc: 'Get ISO certified for your business.', icon: ShieldCheck },
-    { label: 'MSME Registration', desc: 'Register under MSME for benefits.', icon: Building2 },
-    { label: 'FSSAI Registration', desc: 'Food license for food businesses.', icon: ShieldCheck },
-  ],
-  'Business Registration': [
-    {
-      label: 'Firm Registration',
-      desc: 'Register your firm easily.',
-      icon: Briefcase,
-      subItems: [
-        { label: 'Proprietorship Registration', desc: 'Start as a sole trader.', icon: Briefcase },
-        { label: 'Partnership Firm', desc: 'Register partnership firms.', icon: Users },
+// Mega menu structure - organized by categories
+const megaMenuData = {
+  'Services': {
+    featured: {
+      title: 'Popular Services',
+      items: [
+        { label: 'Private Limited Company', route: '/private-limited-company-registration' },
+        { label: 'GST Registration', route: '/gst-registration' },
+        { label: 'Income Tax Filing', route: '/income-tax-filing' },
+        { label: 'Trademark Registration', route: '/trademark-registration' },
       ]
     },
-    {
-      label: 'Company Registration',
-      desc: 'Register your company.',
-      icon: Building2,
-      subItems: [
-        { label: 'Private Limited Company', desc: 'Register Pvt Ltd company.', icon: Building2 },
-        { label: 'LLP Registration', desc: 'Limited Liability Partnership.', icon: Users },
-        { label: 'One Person Company', desc: 'OPC for single entrepreneur.', icon: Briefcase },
-      ]
-    },
-  ],
-  'GST Services': [
-    { label: 'GST Registration', desc: 'Get your GST number quickly.', icon: Receipt },
-    { label: 'GST Return Filing', desc: 'Timely GST return submissions.', icon: FileCheck },
-  ],
+    columns: [
+      {
+        title: 'Business Registration',
+        items: [
+          { label: 'Private Limited Company', route: '/private-limited-company-registration' },
+          { label: 'LLP Registration', route: '/llp-registration' },
+          { label: 'One Person Company', route: '/one-person-company-registration' },
+          { label: 'Proprietorship Firm', route: '/proprietorship-firm-registration' },
+          { label: 'Partnership Firm', route: '/partnership-firm-registration' },
+        ]
+      },
+      {
+        title: 'Tax & GST',
+        items: [
+          { label: 'Income Tax Filing', route: '/income-tax-filing' },
+          { label: 'GST Registration', route: '/gst-registration' },
+          { label: 'GST Return Filing', route: '/gst-return-filing' },
+        ]
+      },
+      {
+        title: 'Licenses & Certifications',
+        items: [
+          { label: 'ISO Certification', route: '/iso-certification' },
+          { label: 'FSSAI Registration', route: '/fssai-registration' },
+          { label: 'MSME Registration', route: '/msme-registration' },
+          { label: 'Trademark Registration', route: '/trademark-registration' },
+        ]
+      },
+    ]
+  }
 };
 
 const navItems = [
-  'Home',
-  'Tax Filing',
-  'Popular Services',
-  'Business Registration',
-  'GST Services',
-  'About',
+  { label: 'Home', path: '/' },
+  { label: 'Services', path: null, hasMegaMenu: true },
+  { label: 'About', path: '/about' },
 ];
-
-// Route mapping for nav items and dropdown items
-const serviceRoutes: Record<string, string> = {
-  'Home': '/',
-  'Tax Filing': '/income-tax-filing',
-  'About': '/#about',
-  'Contact Us': '/contact',
-  'ISO Certification': '/iso-certification',
-  'GST Registration': '/gst-registration',
-  'GST Return Filing': '/gst-return-filing',
-  'MSME Registration': '/msme-registration',
-  'Private Limited Company': '/private-limited-company-registration',
-  'Sole Proprietorship': '/proprietorship-firm-registration',
-  'Proprietorship Registration': '/proprietorship-firm-registration',
-  'Partnership Firm': '/partnership-firm-registration',
-  'LLP Registration': '/llp-registration',
-  'One Person Company': '/one-person-company-registration',
-  'FSSAI Registration': '/fssai-registration',
-  'Trademark Registration': '/trademark-registration',
-};
 
 export default function HeroNavbar({ dict, setIsContactOpen }: HeroNavbarProps) {
   const navigate = useNavigate();
   const [activeLink, setActiveLink] = useState("Home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [hoveredSubItem, setHoveredSubItem] = useState<string | null>(null);
-  const [expandedMobileSubItem, setExpandedMobileSubItem] = useState<string | null>(null);
+  const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
+  const [expandedMobileCategory, setExpandedMobileCategory] = useState<string | null>(null);
 
-  const handleServiceClick = (label: string) => {
-    setActiveDropdown(null);
-    if (serviceRoutes[label]) {
-      navigate(serviceRoutes[label]);
-    } else if (label === 'Live Chat') {
-      setIsContactOpen(true);
-    }
+  const handleNavigate = (route: string) => {
+    setActiveMegaMenu(null);
+    setMobileMenuOpen(false);
+    navigate(route);
   };
 
   return (
@@ -143,29 +112,27 @@ export default function HeroNavbar({ dict, setIsContactOpen }: HeroNavbarProps) 
           {/* Desktop Nav Links */}
           <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2">
             {navItems.map((item) => {
-              const hasDropdown = !!navDropdowns[item];
-              const isSelected = activeDropdown === item;
-              const hasRoute = !!serviceRoutes[item];
+              const isSelected = activeMegaMenu === item.label;
 
               return (
                 <div
-                  key={item}
+                  key={item.label}
                   className="relative"
-                  onMouseEnter={() => hasDropdown && setActiveDropdown(item)}
-                  onMouseLeave={() => hasDropdown && setActiveDropdown(null)}
+                  onMouseEnter={() => item.hasMegaMenu && setActiveMegaMenu(item.label)}
+                  onMouseLeave={() => setActiveMegaMenu(null)}
                 >
-                  {hasRoute ? (
+                  {item.path ? (
                     <Link
-                      to={serviceRoutes[item]}
-                      onClick={() => setActiveLink(item)}
+                      to={item.path}
+                      onClick={() => setActiveLink(item.label)}
                       className={`relative flex items-center py-2 px-3 text-sm font-medium tracking-wide transition-colors duration-200 cursor-pointer font-poppins ${
-                        activeLink === item
+                        activeLink === item.label
                           ? "text-white"
                           : "text-white/70 hover:text-white"
                       }`}
                     >
-                      {item}
-                      {activeLink === item && (
+                      {item.label}
+                      {activeLink === item.label && (
                         <motion.div
                           layoutId="heroActiveUnderline"
                           className="absolute bottom-0 left-3 right-3 h-[2px] bg-white"
@@ -175,22 +142,22 @@ export default function HeroNavbar({ dict, setIsContactOpen }: HeroNavbarProps) 
                     </Link>
                   ) : (
                     <button
-                      onClick={() => setActiveLink(item)}
+                      onClick={() => setActiveLink(item.label)}
                       className={`relative flex items-center py-2 px-3 text-sm font-medium tracking-wide transition-colors duration-200 cursor-pointer font-poppins ${
-                        activeLink === item
+                        activeLink === item.label || isSelected
                           ? "text-white"
                           : "text-white/70 hover:text-white"
                       }`}
                     >
-                      {item}
-                      {hasDropdown && (
+                      {item.label}
+                      {item.hasMegaMenu && (
                         <ChevronDown
                           className={`h-3.5 w-3.5 ml-1 text-white/50 transition-transform duration-200 ${
                             isSelected ? 'rotate-180' : ''
                           }`}
                         />
                       )}
-                      {activeLink === item && (
+                      {activeLink === item.label && (
                         <motion.div
                           layoutId="heroActiveUnderline"
                           className="absolute bottom-0 left-3 right-3 h-[2px] bg-white"
@@ -199,126 +166,6 @@ export default function HeroNavbar({ dict, setIsContactOpen }: HeroNavbarProps) 
                       )}
                     </button>
                   )}
-
-                  {/* Dropdown Menu */}
-                  <AnimatePresence>
-                    {hasDropdown && isSelected && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 5, scale: 0.95 }}
-                        transition={{ duration: 0.15 }}
-                        className="absolute left-0 top-full mt-2 w-80 bg-gradient-to-br from-white/10 via-white/5 to-purple-900/20 backdrop-blur-2xl border border-white/20 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] p-4 z-50"
-                        style={{
-                          backdropFilter: 'blur(20px) saturate(180%)',
-                          WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-                        }}
-                      >
-                        {/* Dropdown Header */}
-                        <div className="px-3 pb-3 mb-3 border-b border-white/10 flex items-center justify-between">
-                          <span className="text-xs font-bold text-white uppercase tracking-wider font-grotesk drop-shadow-sm">
-                            {item}
-                          </span>
-                          <span className="text-[10px] font-semibold text-purple-300 bg-purple-400/20 backdrop-blur-sm px-2.5 py-1 rounded-full font-poppins border border-purple-400/30">
-                            {navDropdowns[item].length} options
-                          </span>
-                        </div>
-
-                        <div className="space-y-1 max-h-[320px] overflow-y-auto scrollbar-thin">
-                          {navDropdowns[item].map((sub, sidx) => {
-                            const IconComp = sub.icon;
-                            const hasSubItems = sub.subItems && sub.subItems.length > 0;
-                            const isSubExpanded = hoveredSubItem === sub.label;
-                            return (
-                              <div
-                                key={sidx}
-                                onMouseEnter={() => hasSubItems && setHoveredSubItem(sub.label)}
-                                onMouseLeave={() => setHoveredSubItem(null)}
-                              >
-                                <div
-                                  className={`flex items-start gap-3 p-3 rounded-xl hover:bg-white/10 transition-all duration-200 cursor-pointer group/item border border-transparent hover:border-white/20 hover:shadow-lg hover:shadow-purple-500/10 ${isSubExpanded ? 'bg-white/10' : ''}`}
-                                  onClick={() => {
-                                    if (!hasSubItems) {
-                                      setActiveLink(item);
-                                      handleServiceClick(sub.label);
-                                    }
-                                  }}
-                                >
-                                  <div className="p-2.5 rounded-xl bg-white/10 backdrop-blur-sm text-white/90 group-hover/item:bg-gradient-to-br group-hover/item:from-purple-500/40 group-hover/item:to-purple-600/30 group-hover/item:text-white transition-all duration-200 flex-shrink-0 border border-white/5 group-hover/item:border-purple-400/30 group-hover/item:shadow-lg group-hover/item:shadow-purple-500/20">
-                                    <IconComp className="h-4 w-4" />
-                                  </div>
-                                  <div className="min-w-0 flex-1">
-                                    <div className="text-[13px] font-semibold text-white/95 group-hover/item:text-white font-poppins drop-shadow-sm flex items-center justify-between">
-                                      {sub.label}
-                                      {hasSubItems && (
-                                        <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${isSubExpanded ? 'rotate-180' : ''}`} />
-                                      )}
-                                    </div>
-                                    <div className="text-[11px] text-white/50 leading-relaxed mt-0.5 font-opensans group-hover/item:text-white/60">
-                                      {sub.desc}
-                                    </div>
-                                  </div>
-                                  {!hasSubItems && (
-                                    <ChevronDown className="h-3.5 w-3.5 text-white/30 -rotate-90 group-hover/item:text-purple-300 group-hover/item:translate-x-1 transition-all duration-200 flex-shrink-0 mt-1.5" />
-                                  )}
-                                </div>
-
-                                {/* Inline Nested Submenu */}
-                                <AnimatePresence>
-                                  {hasSubItems && isSubExpanded && (
-                                    <motion.div
-                                      initial={{ opacity: 0, height: 0 }}
-                                      animate={{ opacity: 1, height: 'auto' }}
-                                      exit={{ opacity: 0, height: 0 }}
-                                      transition={{ duration: 0.2 }}
-                                      className="overflow-hidden"
-                                    >
-                                      <div className="ml-6 mt-1 pl-4 border-l-2 border-purple-400/30">
-                                        {sub.subItems!.map((subItem, subIdx) => {
-                                          const SubIconComp = subItem.icon;
-                                          return (
-                                            <div
-                                              key={subIdx}
-                                              className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-white/10 transition-all duration-200 cursor-pointer group/subitem"
-                                              onClick={() => {
-                                                setActiveLink(item);
-                                                handleServiceClick(subItem.label);
-                                              }}
-                                            >
-                                              <div className="p-1.5 rounded-lg bg-white/10 text-white/90 group-hover/subitem:bg-purple-500/40 group-hover/subitem:text-white transition-all duration-200 flex-shrink-0">
-                                                <SubIconComp className="h-3 w-3" />
-                                              </div>
-                                              <span className="text-[12px] font-medium text-white/90">
-                                                {subItem.label}
-                                              </span>
-                                            </div>
-                                          );
-                                        })}
-                                      </div>
-                                    </motion.div>
-                                  )}
-                                </AnimatePresence>
-                              </div>
-                            );
-                          })}
-                        </div>
-
-                        {/* View All Link */}
-                        <div className="mt-3 pt-3 border-t border-white/10">
-                          <button
-                            onClick={() => {
-                              setActiveDropdown(null);
-                              setActiveLink(item);
-                              setIsContactOpen(true);
-                            }}
-                            className="w-full text-center text-xs font-bold text-white bg-gradient-to-r from-purple-600/80 to-purple-500/80 hover:from-purple-500/90 hover:to-purple-400/90 backdrop-blur-sm py-2.5 rounded-xl transition-all duration-200 font-poppins border border-purple-400/30 hover:border-purple-300/50 hover:shadow-lg hover:shadow-purple-500/20"
-                          >
-                            Explore All {item} →
-                          </button>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
                 </div>
               );
             })}
@@ -349,6 +196,81 @@ export default function HeroNavbar({ dict, setIsContactOpen }: HeroNavbarProps) 
             </button>
           </div>
         </div>
+
+        {/* Mega Menu Dropdown - Full Width */}
+        <AnimatePresence>
+          {activeMegaMenu && megaMenuData[activeMegaMenu as keyof typeof megaMenuData] && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+              className="absolute left-0 right-0 top-full w-full z-50 bg-[#0f0a1f]/98 backdrop-blur-xl border-b border-white/10 shadow-2xl"
+              onMouseEnter={() => setActiveMegaMenu(activeMegaMenu)}
+              onMouseLeave={() => setActiveMegaMenu(null)}
+            >
+              <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-8">
+                <div className="grid grid-cols-12 gap-8">
+                  {/* Featured Section - Left Column */}
+                  <div className="col-span-3 pr-8 border-r border-white/10">
+                    <h3 className="text-xs font-bold uppercase tracking-wider mb-4 text-purple-400">
+                      {megaMenuData[activeMegaMenu as keyof typeof megaMenuData].featured.title}
+                    </h3>
+                    <div className="space-y-1">
+                      {megaMenuData[activeMegaMenu as keyof typeof megaMenuData].featured.items.map((item, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => handleNavigate(item.route)}
+                          className="flex items-center gap-2 w-full text-left py-2.5 px-3 rounded-lg transition-all duration-150 group hover:bg-white/5 text-white/80 hover:text-white"
+                        >
+                          <ChevronRight className="h-3.5 w-3.5 opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all duration-150 text-purple-400" />
+                          <span className="text-sm font-medium">{item.label}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Service Columns */}
+                  {megaMenuData[activeMegaMenu as keyof typeof megaMenuData].columns.map((column, colIdx) => (
+                    <div key={colIdx} className="col-span-3">
+                      <h3 className="text-xs font-bold uppercase tracking-wider mb-4 text-white">
+                        {column.title}
+                      </h3>
+                      <div className="space-y-1">
+                        {column.items.map((item, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => handleNavigate(item.route)}
+                            className="flex items-center gap-2 w-full text-left py-2 px-2 rounded-lg transition-all duration-150 group hover:bg-white/5 text-white/70 hover:text-white"
+                          >
+                            <span className="text-sm">{item.label}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Bottom CTA */}
+                <div className="mt-8 pt-6 border-t border-white/10">
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm text-white/60">
+                      Need help choosing the right service?
+                    </p>
+                    <Link
+                      to="/contact"
+                      onClick={() => setActiveMegaMenu(null)}
+                      className="text-sm font-semibold flex items-center gap-1 transition-colors text-purple-400 hover:text-purple-300"
+                    >
+                      Contact our experts
+                      <ChevronRight className="h-4 w-4" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
       {/* Mobile Sidebar Navigation */}
@@ -361,133 +283,77 @@ export default function HeroNavbar({ dict, setIsContactOpen }: HeroNavbarProps) 
             transition={{ duration: 0.3 }}
             className="absolute top-24 left-0 w-full bg-[#0a0715]/95 border-b border-white/5 backdrop-blur-md z-40 lg:hidden flex flex-col py-6 px-6 space-y-2 max-h-[70vh] overflow-y-auto"
           >
-            {navItems.map((item) => {
-              const hasDropdown = !!navDropdowns[item];
-              const hasRoute = !!serviceRoutes[item];
-
-              return (
-                <div key={item} className="border-b border-white/5 last:border-b-0">
-                  {hasRoute ? (
-                    <Link
-                      to={serviceRoutes[item]}
-                      onClick={() => {
-                        setActiveLink(item);
-                        setMobileMenuOpen(false);
-                      }}
-                      className={`flex items-center justify-between w-full text-left text-base font-semibold py-3 tracking-wide transition-all duration-150 cursor-pointer font-poppins ${
-                        activeLink === item
-                          ? "text-white"
-                          : "text-white/60 hover:text-white"
-                      }`}
-                    >
-                      <span>{item}</span>
-                    </Link>
-                  ) : (
+            {navItems.map((item) => (
+              <div key={item.label} className="border-b border-white/5 last:border-b-0">
+                {item.path ? (
+                  <Link
+                    to={item.path}
+                    onClick={() => {
+                      setActiveLink(item.label);
+                      setMobileMenuOpen(false);
+                    }}
+                    className={`flex items-center justify-between w-full text-left text-base font-semibold py-3 tracking-wide transition-all duration-150 cursor-pointer font-poppins ${
+                      activeLink === item.label
+                        ? "text-white"
+                        : "text-white/60 hover:text-white"
+                    }`}
+                  >
+                    <span>{item.label}</span>
+                  </Link>
+                ) : (
+                  <>
                     <button
-                      onClick={() => {
-                        if (hasDropdown) {
-                          setActiveDropdown(activeDropdown === item ? null : item);
-                        } else {
-                          setActiveLink(item);
-                          setMobileMenuOpen(false);
-                        }
-                      }}
+                      onClick={() => setExpandedMobileCategory(expandedMobileCategory === item.label ? null : item.label)}
                       className={`flex items-center justify-between w-full text-left text-base font-semibold py-3 tracking-wide transition-all duration-150 cursor-pointer font-poppins ${
-                        activeLink === item
+                        activeLink === item.label
                           ? "text-white"
                           : "text-white/60 hover:text-white"
                       }`}
                     >
-                      <span>{item}</span>
-                      {hasDropdown && (
+                      <span>{item.label}</span>
+                      {item.hasMegaMenu && (
                         <ChevronDown
                           className={`h-4 w-4 text-white/40 transition-transform duration-200 ${
-                            activeDropdown === item ? 'rotate-180' : ''
+                            expandedMobileCategory === item.label ? 'rotate-180' : ''
                           }`}
                         />
                       )}
                     </button>
-                  )}
 
-                  {/* Mobile Sub-menu */}
-                  <AnimatePresence>
-                    {hasDropdown && activeDropdown === item && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="pl-3 pb-3 space-y-1"
-                      >
-                        {navDropdowns[item].map((sub, sidx) => {
-                          const IconComp = sub.icon;
-                          const hasSubItems = sub.subItems && sub.subItems.length > 0;
-                          return (
-                            <div key={sidx}>
-                              <button
-                                onClick={() => {
-                                  if (hasSubItems) {
-                                    setExpandedMobileSubItem(expandedMobileSubItem === sub.label ? null : sub.label);
-                                  } else {
-                                    setMobileMenuOpen(false);
-                                    setActiveLink(item);
-                                    handleServiceClick(sub.label);
-                                  }
-                                }}
-                                className="flex items-center gap-3 w-full text-left py-2.5 px-3 rounded-lg hover:bg-white/5 transition-colors border border-transparent hover:border-white/10"
-                              >
-                                <div className="p-1.5 rounded-lg bg-white/10">
-                                  <IconComp className="h-4 w-4 text-white/70" />
-                                </div>
-                                <span className="text-sm font-medium text-white/80 flex-1">{sub.label}</span>
-                                {hasSubItems && (
-                                  <ChevronDown
-                                    className={`h-3.5 w-3.5 text-white/40 transition-transform duration-200 ${
-                                      expandedMobileSubItem === sub.label ? 'rotate-180' : ''
-                                    }`}
-                                  />
-                                )}
-                              </button>
-
-                              {/* Mobile Nested Sub-menu */}
-                              <AnimatePresence>
-                                {hasSubItems && expandedMobileSubItem === sub.label && (
-                                  <motion.div
-                                    initial={{ opacity: 0, height: 0 }}
-                                    animate={{ opacity: 1, height: 'auto' }}
-                                    exit={{ opacity: 0, height: 0 }}
-                                    className="pl-6 pt-1 space-y-1"
+                    {/* Mobile Mega Menu Content */}
+                    <AnimatePresence>
+                      {item.hasMegaMenu && expandedMobileCategory === item.label && megaMenuData[item.label as keyof typeof megaMenuData] && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="pl-3 pb-4 space-y-4"
+                        >
+                          {megaMenuData[item.label as keyof typeof megaMenuData].columns.map((column, colIdx) => (
+                            <div key={colIdx}>
+                              <h4 className="text-xs font-bold uppercase tracking-wider mb-2 text-white/50">
+                                {column.title}
+                              </h4>
+                              <div className="space-y-1">
+                                {column.items.map((subItem, idx) => (
+                                  <button
+                                    key={idx}
+                                    onClick={() => handleNavigate(subItem.route)}
+                                    className="flex items-center w-full text-left py-2 px-3 rounded-lg transition-colors text-white/70 hover:bg-white/5 hover:text-white"
                                   >
-                                    {sub.subItems!.map((subItem, subIdx) => {
-                                      const SubIconComp = subItem.icon;
-                                      return (
-                                        <button
-                                          key={subIdx}
-                                          onClick={() => {
-                                            setMobileMenuOpen(false);
-                                            setActiveLink(item);
-                                            handleServiceClick(subItem.label);
-                                          }}
-                                          className="flex items-center gap-3 w-full text-left py-2 px-3 rounded-lg hover:bg-white/5 transition-colors border border-transparent hover:border-white/10"
-                                        >
-                                          <div className="p-1 rounded-lg bg-white/10">
-                                            <SubIconComp className="h-3.5 w-3.5 text-white/70" />
-                                          </div>
-                                          <span className="text-xs font-medium text-white/80">{subItem.label}</span>
-                                        </button>
-                                      );
-                                    })}
-                                  </motion.div>
-                                )}
-                              </AnimatePresence>
+                                    <span className="text-sm">{subItem.label}</span>
+                                  </button>
+                                ))}
+                              </div>
                             </div>
-                          );
-                        })}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              );
-            })}
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </>
+                )}
+              </div>
+            ))}
 
             <Link
               to="/contact"

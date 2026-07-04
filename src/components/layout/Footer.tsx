@@ -20,9 +20,9 @@ export default function Footer({ lang, dict, setIsContactOpen }: FooterProps) {
   return (
     <footer id="main-application-footer" className="relative w-full overflow-hidden">
 
-      {/* Banner with background image */}
-      <div className="relative py-14 px-6 md:px-12 lg:px-16 bg-[#161d2d] text-white">
-        {/* Background image overlay */}
+      
+      {/* <div className="relative py-14 px-6 md:px-12 lg:px-16 bg-[#161d2d] text-white">
+        
         <div className="absolute inset-0 z-0 select-none pointer-events-none">
           <img
             src={footerBannerBgImg}
@@ -34,14 +34,14 @@ export default function Footer({ lang, dict, setIsContactOpen }: FooterProps) {
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16">
-          {/* Title / CTA */}
+          
           <div className="max-w-xl text-left">
             <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white leading-tight font-grotesk">
               {dict.footerJoinTitle}
             </h3>
           </div>
 
-          {/* Input Form exactly as depicted in illustration */}
+          
           <div className="w-full md:w-auto flex-shrink-0">
             <div className="bg-white rounded-lg p-1 w-full md:w-[480px] flex items-center justify-between shadow-lg">
               <input
@@ -61,7 +61,7 @@ export default function Footer({ lang, dict, setIsContactOpen }: FooterProps) {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Lower footer: light slate-blue-gray background */}
       <div className="bg-[#f3f5f8] text-gray-800 py-16 px-6 md:px-12 lg:px-16">
@@ -81,42 +81,36 @@ export default function Footer({ lang, dict, setIsContactOpen }: FooterProps) {
               </div>
 
               <p className="text-xs sm:text-[13px] text-gray-500 font-normal leading-relaxed text-justify pr-0 md:pr-12 select-text font-opensans">
-                {dict.footerDescText}
-                <button
-                  onClick={() => setIsContactOpen(true)}
-                  className="cursor-pointer inline-flex items-center gap-0.5 ml-1 text-xs font-semibold text-[#1a253c] hover:underline font-poppins"
-                >
-                  <span>{dict.seeMore}</span>
-                  <ArrowUpRight className="h-3 w-3" />
-                </button>
+                Taaxwala Associate operates as an independent provider of tax consultancy and business compliance services. We are neither a practicing CA/CS/legal firm nor an authorized representative of any government body. Our offerings include taxation guidance, compliance assistance, and educational courses only.
               </p>
             </div>
 
-            {/* Useful Links Col */}
+            {/* Quick Links Col */}
             <div className="md:col-span-3 space-y-6 text-left">
               <h4 className="font-extrabold text-sm uppercase tracking-wider text-[#131926] font-poppins">
-                {dict.footerUsefulLinksTitle}
+                Quick Links
               </h4>
-              <ul className="space-y-3.5 text-xs text-gray-500 font-medium font-opensans">
+              <ul className="space-y-3 text-xs text-gray-500 font-medium font-opensans">
                 <li>
-                  <a href="#services-grid-section" className="hover:text-gray-900 transition-colors">
-                    {dict.services}
-                  </a>
+                  <a href="/" className="hover:text-gray-900 transition-colors">Home</a>
                 </li>
                 <li>
-                  <a href="#about-us-detailed-section" className="hover:text-gray-900 transition-colors">
-                    {dict.aboutUsBtn}
-                  </a>
+                  <a href="/about" className="hover:text-gray-900 transition-colors">About Us</a>
                 </li>
                 <li>
-                  <a href="#features-explore" className="hover:text-gray-900 transition-colors">
-                    {lang === 'EN' ? 'Weblog' : 'Blog'}
-                  </a>
+                  <a href="/contact" className="hover:text-gray-900 transition-colors">Contact Us</a>
                 </li>
                 <li>
-                  <button onClick={() => setIsContactOpen(true)} className="cursor-pointer hover:text-gray-900 transition-colors text-left w-full">
-                    {dict.career}
-                  </button>
+                  <a href="/income-tax-filing" className="hover:text-gray-900 transition-colors">Income Tax Filing</a>
+                </li>
+                <li>
+                  <a href="/gst-registration" className="hover:text-gray-900 transition-colors">GST Registration</a>
+                </li>
+                <li>
+                  <a href="/private-limited-company-registration" className="hover:text-gray-900 transition-colors">Company Registration</a>
+                </li>
+                <li>
+                  <a href="/trademark-registration" className="hover:text-gray-900 transition-colors">Trademark Registration</a>
                 </li>
               </ul>
             </div>
@@ -126,22 +120,39 @@ export default function Footer({ lang, dict, setIsContactOpen }: FooterProps) {
               <h4 className="font-extrabold text-sm uppercase tracking-wider text-[#131926] font-poppins">
                 {dict.footerContactInfoTitle}
               </h4>
-              <ul className="space-y-3.5 text-xs text-gray-500 font-medium select-text font-opensans">
-                <li className="hover:text-gray-900 transition-colors underline decoration-dotted">
-                  {dict.footerAddressLabel}
+              <ul className="space-y-4 text-xs text-gray-500 font-medium select-text font-opensans">
+                {/* Address */}
+                <li className="space-y-1">
+                  <span className="text-[#131926] font-semibold block">Office Address</span>
+                  <span className="block">123 Business Park, Tower A, 5th Floor</span>
+                  <span className="block">Andheri East, Mumbai - 400069</span>
+                  <span className="block">Maharashtra, India</span>
                 </li>
-                <li className="hover:text-gray-900 transition-colors">
-                  <a href="tel:+4571469728" className="hover:underline">
-                    {dict.footerTelLabel}
+                {/* Phone */}
+                <li className="space-y-1">
+                  <span className="text-[#131926] font-semibold block">Phone</span>
+                  <a href="tel:+919876543210" className="block hover:text-gray-900 transition-colors">
+                    +91 98765 43210 (Primary)
+                  </a>
+                  <a href="tel:+919876543211" className="block hover:text-gray-900 transition-colors">
+                    +91 98765 43211 (Support)
                   </a>
                 </li>
-                <li className="hover:text-gray-900 transition-colors font-mono">
-                  {dict.footerFaxLabel}
-                </li>
-                <li className="hover:text-gray-900 transition-colors">
-                  <a href="mailto:Contact@adfinancy.com" className="hover:underline">
-                    {dict.footerEmailLabel}
+                {/* Email */}
+                <li className="space-y-1">
+                  <span className="text-[#131926] font-semibold block">Email</span>
+                  <a href="mailto:contact@taaxwala.com" className="block hover:text-gray-900 transition-colors">
+                    contact@taaxwala.com
                   </a>
+                  <a href="mailto:support@taaxwala.com" className="block hover:text-gray-900 transition-colors">
+                    support@taaxwala.com
+                  </a>
+                </li>
+                {/* Hours */}
+                <li className="space-y-1">
+                  <span className="text-[#131926] font-semibold block">Office Hours</span>
+                  <span className="block">Mon - Fri: 9:00 AM - 7:00 PM</span>
+                  <span className="block">Saturday: 10:00 AM - 4:00 PM</span>
                 </li>
               </ul>
             </div>
@@ -150,21 +161,21 @@ export default function Footer({ lang, dict, setIsContactOpen }: FooterProps) {
 
           {/* Divider line exactly matching screenshot */}
           <div className="border-t border-gray-200/80 w-full pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400 font-opensans">
-            <div>
+            {/* <div>
               <a href="https://karmatechhub.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 transition-colors font-medium">
                 Karmatechhub.com
               </a>
-            </div>
+            </div> */}
             <div className="flex items-center gap-6 font-medium">
               <a href="#" className="hover:text-gray-600 transition-colors">
-                {lang === 'EN' ? 'Terms and conditions' : 'Vilkår og betingelser'}
+                Terms and conditions
               </a>
               <a href="#" className="hover:text-gray-600 transition-colors">
-                {lang === 'EN' ? 'Privacy policy' : 'Fortrolighedspolitik'}
+                Privacy policy
               </a>
-              <a href="#" className="hover:text-gray-600 transition-colors">
+              {/* <a href="#" className="hover:text-gray-600 transition-colors">
                 {lang === 'EN' ? 'Product' : 'Produkt'}
-              </a>
+              </a> */}
             </div>
           </div>
 

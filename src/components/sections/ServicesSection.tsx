@@ -5,6 +5,7 @@
 
 import { motion } from 'motion/react';
 import { ArrowUpRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { TranslationDictionary } from '../../types';
 
 interface ServicesSectionProps {
@@ -13,6 +14,7 @@ interface ServicesSectionProps {
 }
 
 export default function ServicesSection({ dict, setIsContactOpen }: ServicesSectionProps) {
+  const navigate = useNavigate();
   return (
     <section id="services-grid-section" className="relative bg-[#10141e] text-white py-24 px-6 md:px-12 lg:px-16 overflow-hidden">
 
@@ -55,10 +57,10 @@ export default function ServicesSection({ dict, setIsContactOpen }: ServicesSect
             <div className="pt-4">
               <button
                 id="accounting-see-more-btn"
-                onClick={() => setIsContactOpen(true)}
+                onClick={() => navigate("/contact")}
                 className="cursor-pointer inline-flex items-center gap-2 text-sm font-semibold tracking-wider text-white hover:text-[#38bdf8] transition-colors group-hover:translate-x-1 duration-200 font-poppins"
               >
-                <span>{dict.seeMore}</span>
+                <span>{dict.getInTouch}</span>
                 <ArrowUpRight className="h-4 w-4 stroke-[2.5]" />
               </button>
             </div>
@@ -85,10 +87,10 @@ export default function ServicesSection({ dict, setIsContactOpen }: ServicesSect
             <div className="pt-4">
               <button
                 id="tax-see-more-btn"
-                onClick={() => setIsContactOpen(true)}
+                onClick={() => navigate("/contact")}
                 className="cursor-pointer inline-flex items-center gap-2 text-sm font-semibold tracking-wider text-white hover:text-[#38bdf8] transition-colors group-hover:translate-x-1 duration-200 font-poppins"
               >
-                <span>{dict.seeMore}</span>
+                <span>{dict.getInTouch}</span>
                 <ArrowUpRight className="h-4 w-4 stroke-[2.5]" />
               </button>
             </div>
@@ -115,10 +117,10 @@ export default function ServicesSection({ dict, setIsContactOpen }: ServicesSect
             <div className="pt-4">
               <button
                 id="consulting-see-more-btn"
-                onClick={() => setIsContactOpen(true)}
+                onClick={() => navigate("/contact")}
                 className="cursor-pointer inline-flex items-center gap-2 text-sm font-semibold tracking-wider text-white hover:text-[#38bdf8] transition-colors group-hover:translate-x-1 duration-200 font-poppins"
               >
-                <span>{dict.seeMore}</span>
+                <span>{dict.getInTouch}</span>
                 <ArrowUpRight className="h-4 w-4 stroke-[2.5]" />
               </button>
             </div>

@@ -9,6 +9,7 @@ import HeroNavbar from '../layout/HeroNavbar';
 
 // Import images
 import businessMeetingImg from '../../assets/images/business_meeting_1780338519626.png';
+import { useNavigate } from 'react-router-dom';
 
 interface HeroSectionProps {
   lang: Language;
@@ -17,6 +18,8 @@ interface HeroSectionProps {
 }
 
 export default function HeroSection({ lang, dict, setIsContactOpen }: HeroSectionProps) {
+  const navigate = useNavigate();
+
   return (
     <div className="relative min-h-screen bg-[#07050f] text-white font-sans overflow-hidden select-none">
       {/* 1. Background Image Wrapper */}
@@ -132,7 +135,7 @@ export default function HeroSection({ lang, dict, setIsContactOpen }: HeroSectio
             transition={{ duration: 1.0, ease: "easeOut", delay: 0.45 }}
           >
             <button
-              onClick={() => setIsContactOpen(true)}
+              onClick={() => navigate("/contact")}
               className="bg-[#3D306F] hover:bg-[#483a80]/90 text-white font-medium text-xs tracking-wider px-8 py-4 uppercase transition-all duration-200 outline-none select-none cursor-pointer transform hover:translate-y-[-2px] hover:shadow-lg hover:shadow-indigo-900/45 active:scale-95 font-jakarta"
             >
               {dict.getInTouch}

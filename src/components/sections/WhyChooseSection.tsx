@@ -6,6 +6,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Check, Cpu, Users, Package, HeartHandshake, BadgeCheck, Lock, Star, Trophy, ShieldCheck } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { TranslationDictionary } from '../../types';
 
 // Import image
@@ -69,6 +70,8 @@ const whyCards: WhyCard[] = [
 ];
 
 export default function WhyChooseSection({ dict, setIsContactOpen }: WhyChooseSectionProps) {
+  const navigate = useNavigate();
+
   return (
     <section id="why-choose-section" className="bg-white py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto space-y-12">
@@ -165,7 +168,7 @@ export default function WhyChooseSection({ dict, setIsContactOpen }: WhyChooseSe
             <div className="pt-2">
               <button
                 id="why-section-cta"
-                onClick={() => setIsContactOpen(true)}
+                onClick={() => navigate("/contact")}
                 className="cursor-pointer group inline-flex items-center gap-3 bg-[#519d6d] hover:bg-[#43835a] text-white font-semibold text-sm px-6 py-4 rounded-full shadow-md hover:shadow-lg transition-all font-poppins"
               >
                 <span>{dict.getInTouch}</span>
@@ -210,14 +213,14 @@ export default function WhyChooseSection({ dict, setIsContactOpen }: WhyChooseSe
           </div>
 
           {/* CTA Button */}
-          <div className="relative z-10 flex-shrink-0">
+          {/* <div className="relative z-10 flex-shrink-0">
             <button
               onClick={() => setIsContactOpen(true)}
               className="cursor-pointer bg-white text-[#3c8e59] hover:bg-gray-100 font-semibold text-sm px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all font-poppins whitespace-nowrap"
             >
               Learn More
             </button>
-          </div>
+          </div> */}
         </motion.div>
 
       </div>

@@ -14,16 +14,15 @@ import { Footer } from './components/layout';
 import {
   HeroSection,
   FeaturesSection,
-  AboutSection,
   ServicesSection,
   StrategicMarketingSection,
-  TeamSection,
   WhyChooseSection,
   ExpertAdviceSection,
 } from './components/sections';
 
 // Pages
 import ContactPage from './pages/ContactPage';
+import AboutPage from './pages/AboutPage';
 import IncomeTaxFilingPage from './pages/IncomeTaxFilingPage';
 import ISOCertificationPage from './pages/ISOCertificationPage';
 import GSTRegistrationPage from './pages/GSTRegistrationPage';
@@ -64,12 +63,6 @@ function HomePage() {
       {/* Features Section */}
       <FeaturesSection dict={dict} />
 
-      {/* About Us Section */}
-      <AboutSection
-        dict={dict}
-        setIsContactOpen={setIsContactOpen}
-      />
-
       {/* Services Section */}
       <ServicesSection
         dict={dict}
@@ -78,9 +71,6 @@ function HomePage() {
 
       {/* Strategic Marketing Section */}
       <StrategicMarketingSection dict={dict} />
-
-      {/* Team Section */}
-      <TeamSection dict={dict} />
 
       {/* Why Choose Section */}
       <WhyChooseSection
@@ -120,6 +110,24 @@ function ContactPageWrapper() {
   return (
     <>
       <ContactPage dict={dict} setIsContactOpen={setIsContactOpen} />
+      <ContactModal
+        isOpen={isContactOpen}
+        onClose={() => setIsContactOpen(false)}
+        dict={dict}
+      />
+    </>
+  );
+}
+
+// About Page Wrapper
+function AboutPageWrapper() {
+  const [lang] = useState<Language>('EN');
+  const [isContactOpen, setIsContactOpen] = useState(false);
+  const dict = translations[lang];
+
+  return (
+    <>
+      <AboutPage dict={dict} setIsContactOpen={setIsContactOpen} />
       <ContactModal
         isOpen={isContactOpen}
         onClose={() => setIsContactOpen(false)}
@@ -314,6 +322,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPageWrapper />} />
         <Route path="/contact" element={<ContactPageWrapper />} />
         <Route path="/income-tax-filing" element={<IncomeTaxFilingPageWrapper />} />
         <Route path="/iso-certification" element={<ISOCertificationPageWrapper />} />
