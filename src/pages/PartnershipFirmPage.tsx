@@ -5,6 +5,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useNavigate } from 'react-router-dom';
 import {
   Building2,
   CheckCircle,
@@ -38,6 +39,7 @@ interface PartnershipFirmPageProps {
 }
 
 export default function PartnershipFirmPage({ dict, setIsContactOpen }: PartnershipFirmPageProps) {
+  const navigate = useNavigate();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const importantFactors = [
@@ -49,7 +51,7 @@ export default function PartnershipFirmPage({ dict, setIsContactOpen }: Partners
   const packages = [
     {
       title: 'Basic Partnership Firm Registration',
-      price: '2,499',
+      price: '2,499*',
       color: 'emerald',
       includes: [
         'Partnership Deed Drafting Service by Legal Expert',
@@ -59,7 +61,7 @@ export default function PartnershipFirmPage({ dict, setIsContactOpen }: Partners
     },
     {
       title: 'Premium Partnership Firm Registration',
-      price: '3,999',
+      price: '3,999*',
       color: 'blue',
       includes: [
         'All Basic Package Features',
@@ -229,11 +231,11 @@ export default function PartnershipFirmPage({ dict, setIsContactOpen }: Partners
               #1 Portal to get done registration of partnership firm at Cheapest Cost with simple 3 Steps.
             </p>
             <div className="mt-6 text-3xl md:text-4xl font-extrabold text-[#3c8e59] font-grotesk">
-              Starting @ 2,499/- INR
+              Starting @ 2,499*/- INR
             </div>
             <div className="mt-8">
               <button
-                onClick={() => setIsContactOpen(true)}
+                onClick={() => navigate("/contact")}
                 className="bg-[#3c8e59] hover:bg-[#2d6b43] text-white font-bold text-sm px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all uppercase tracking-wider font-poppins cursor-pointer"
               >
                 Get Proposal
@@ -364,7 +366,7 @@ export default function PartnershipFirmPage({ dict, setIsContactOpen }: Partners
 
           <div className="text-center mt-8">
             <button
-              onClick={() => setIsContactOpen(true)}
+              onClick={() => navigate("/contact")}
               className="bg-[#3c8e59] hover:bg-[#2d6b43] text-white font-bold text-sm px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all uppercase tracking-wider font-poppins cursor-pointer"
             >
               Book Now
@@ -746,10 +748,10 @@ export default function PartnershipFirmPage({ dict, setIsContactOpen }: Partners
               Get your Partnership Firm registered with our expert assistance. Lowest cost, fastest processing, and dedicated support!
             </p>
             <button
-              onClick={() => setIsContactOpen(true)}
+              onClick={() => navigate("/contact")}
               className="bg-white text-[#3c8e59] hover:bg-gray-100 font-bold text-sm px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all uppercase tracking-wider font-poppins cursor-pointer"
             >
-              Register Now @ 2,499/-
+              Register Now @ 2,499*/-
             </button>
           </div>
         </motion.section>
@@ -760,7 +762,7 @@ export default function PartnershipFirmPage({ dict, setIsContactOpen }: Partners
       <footer className="border-t border-emerald-500/10 py-8 bg-white">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
           <p className="text-gray-400 text-sm font-opensans">
-            &copy; {new Date().getFullYear()} Taaxwala Associate. All rights reserved.
+            &copy; {new Date().getFullYear()} Taxwala Associate. All rights reserved.
           </p>
         </div>
       </footer>

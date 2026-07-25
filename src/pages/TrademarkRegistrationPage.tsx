@@ -5,6 +5,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useNavigate } from 'react-router-dom';
 import {
   CheckCircle,
   FileCheck,
@@ -36,6 +37,7 @@ interface TrademarkRegistrationPageProps {
 }
 
 export default function TrademarkRegistrationPage({ dict, setIsContactOpen }: TrademarkRegistrationPageProps) {
+  const navigate = useNavigate();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const whyRequired = [
@@ -226,12 +228,12 @@ export default function TrademarkRegistrationPage({ dict, setIsContactOpen }: Tr
               India's Govt Certified Portal for Trademark Registration. Protect your brand name and logo with expert assistance.
             </p>
             <div className="mt-6 text-3xl md:text-4xl font-extrabold text-[#3c8e59] font-grotesk">
-              Starting @ 6,800/- INR
+              Starting @ 6,800*/- INR
             </div>
             <p className="text-xs text-gray-500 mt-2 font-opensans">(All Inclusive)</p>
             <div className="mt-8">
               <button
-                onClick={() => setIsContactOpen(true)}
+                onClick={() => navigate("/contact")}
                 className="bg-[#3c8e59] hover:bg-[#2d6b43] text-white font-bold text-sm px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all uppercase tracking-wider font-poppins cursor-pointer"
               >
                 Get Proposal
@@ -308,7 +310,7 @@ export default function TrademarkRegistrationPage({ dict, setIsContactOpen }: Tr
               <div className="space-y-4">
                 <div className="bg-[#ebf4ee] rounded-lg p-4">
                   <div className="text-sm text-gray-500 font-poppins mb-1">Government Fee (Per Class)</div>
-                  <div className="text-2xl font-bold text-[#3c8e59] font-grotesk">4,500/- INR</div>
+                  <div className="text-2xl font-bold text-[#3c8e59] font-grotesk">4,500*/- INR</div>
                   <p className="text-xs text-gray-500 mt-1 font-opensans">Includes trade name + logo for one class</p>
                 </div>
                 <div className="bg-blue-50 rounded-lg p-4">
@@ -324,7 +326,7 @@ export default function TrademarkRegistrationPage({ dict, setIsContactOpen }: Tr
                 Our Package
               </div>
               <div className="text-4xl font-extrabold font-grotesk mb-4">
-                6,799<span className="text-lg font-normal">/- INR</span>
+                6,799*<span className="text-lg font-normal">/- INR</span>
               </div>
               <h4 className="font-semibold mb-3 font-poppins">Package Includes:</h4>
               <ul className="space-y-2">
@@ -336,7 +338,7 @@ export default function TrademarkRegistrationPage({ dict, setIsContactOpen }: Tr
                 ))}
               </ul>
               <button
-                onClick={() => setIsContactOpen(true)}
+                onClick={() => navigate("/contact")}
                 className="mt-6 w-full bg-white text-[#3c8e59] hover:bg-gray-100 font-bold text-sm py-3 rounded-full transition-all uppercase tracking-wider font-poppins cursor-pointer"
               >
                 Book Now
@@ -683,10 +685,10 @@ export default function TrademarkRegistrationPage({ dict, setIsContactOpen }: Tr
               Get your Trademark Registration done with expert assistance. Protect your brand name and logo with India's trusted service.
             </p>
             <button
-              onClick={() => setIsContactOpen(true)}
+              onClick={() => navigate("/contact")}
               className="bg-white text-[#3c8e59] hover:bg-gray-100 font-bold text-sm px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all uppercase tracking-wider font-poppins cursor-pointer"
             >
-              Register Trademark @ 6,799/-
+              Register Trademark @ 6,799*/-
             </button>
           </div>
         </motion.section>
@@ -697,7 +699,7 @@ export default function TrademarkRegistrationPage({ dict, setIsContactOpen }: Tr
       <footer className="border-t border-emerald-500/10 py-8 bg-white">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
           <p className="text-gray-400 text-sm font-opensans">
-            &copy; {new Date().getFullYear()} Taaxwala Associate. All rights reserved.
+            &copy; {new Date().getFullYear()} Taxwala Associate. All rights reserved.
           </p>
         </div>
       </footer>

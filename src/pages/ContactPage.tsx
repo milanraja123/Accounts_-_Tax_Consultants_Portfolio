@@ -14,6 +14,7 @@ import {
 import { TranslationDictionary } from '../types';
 import TrustSection from '../components/sections/TrustSection';
 import Navbar from '../components/layout/Navbar';
+import LocationMap from '../components/ui/LocationMap';
 
 interface ContactPageProps {
   dict: TranslationDictionary;
@@ -26,37 +27,33 @@ export default function ContactPage({ dict, setIsContactOpen }: ContactPageProps
       icon: Building2,
       title: 'Office Address',
       details: [
-        'Taaxwala Associate',
-        '123 Business Park, Tower A, 5th Floor',
-        'Andheri East, Mumbai - 400069',
-        'Maharashtra, India',
+        'Taxwala Associate',
+        '91b Aurobindo Sarani',
+        'kolkata -700006 (Hatibagan)',
+        'West Bengal, India',
       ],
     },
     {
       icon: Phone,
       title: 'Phone Numbers',
       details: [
-        '+91 98765 43210 (Primary)',
-        '+91 98765 43211 (Support)',
-        '+91 22 2845 6789 (Landline)',
+        '+91 90624 53147 (Primary)',
+        '+91 79807 76643 (Support)',
       ],
     },
     {
       icon: Mail,
       title: 'Email Addresses',
       details: [
-        'contact@taaxwala.com',
-        'support@taaxwala.com',
-        'info@taaxwala.com',
+        'taxwalaassociates.dtc@gmail.com',
       ],
     },
     {
       icon: Clock,
       title: 'Office Hours',
       details: [
-        'Monday - Friday: 9:00 AM - 7:00 PM',
-        'Saturday: 10:00 AM - 4:00 PM',
-        'Sunday: Closed',
+        'Tuesday - Friday: 11:00 AM - 8:00 PM',
+        'Monday: Closed',
         'Public Holidays: Closed',
       ],
     },
@@ -142,14 +139,8 @@ export default function ContactPage({ dict, setIsContactOpen }: ContactPageProps
               Find Us On Map
             </h3>
           </div>
-          <div className="relative w-full h-64 bg-[#f3f6f3] rounded-xl flex items-center justify-center border border-emerald-500/5">
-            <div className="text-center">
-              <MapPin className="w-12 h-12 text-[#3c8e59] mx-auto mb-3" />
-              <p className="text-gray-600 text-sm font-opensans">Mumbai, Maharashtra, India</p>
-              <p className="text-gray-400 text-xs mt-2 font-opensans">
-                Interactive map coming soon
-              </p>
-            </div>
+          <div className="relative w-full rounded-xl overflow-hidden border border-emerald-500/5">
+            <LocationMap />
           </div>
         </motion.div>
 
@@ -161,7 +152,7 @@ export default function ContactPage({ dict, setIsContactOpen }: ContactPageProps
           className="mt-12 text-center relative z-10"
         >
           <p className="text-gray-400 text-xs leading-relaxed max-w-2xl mx-auto font-opensans">
-            Taaxwala Associate operates as an independent provider of tax consultancy
+            Taxwala Associate operates as an independent provider of tax consultancy
             and business compliance services. We are neither a practicing CA/CS/legal
             firm nor an authorized representative of any government body.
           </p>
@@ -172,7 +163,7 @@ export default function ContactPage({ dict, setIsContactOpen }: ContactPageProps
       <footer className="border-t border-emerald-500/10 py-8">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
           <p className="text-gray-400 text-sm font-opensans">
-            &copy; {new Date().getFullYear()} Taaxwala Associate. All rights reserved.
+            &copy; {new Date().getFullYear()} Taxwala Associate. All rights reserved.
           </p>
         </div>
       </footer>

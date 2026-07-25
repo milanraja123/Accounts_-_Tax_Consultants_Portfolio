@@ -5,6 +5,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useNavigate } from 'react-router-dom';
 import {
   CheckCircle,
   FileCheck,
@@ -34,13 +35,14 @@ interface FSSAIRegistrationPageProps {
 }
 
 export default function FSSAIRegistrationPage({ dict, setIsContactOpen }: FSSAIRegistrationPageProps) {
+  const navigate = useNavigate();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const licenseTypes = [
     {
       title: 'FSSAI Basic Registration',
       turnover: 'Less than Rs. 12 Lakh/year',
-      govtFee: '100/- Per Year',
+      govtFee: '100*/- Per Year',
       description: 'Required by small businesses just starting out with turnover less than 12 lakh rupees annually.',
       icon: Building2,
       color: 'emerald',
@@ -49,7 +51,7 @@ export default function FSSAIRegistrationPage({ dict, setIsContactOpen }: FSSAIR
     {
       title: 'FSSAI State License',
       turnover: 'Rs. 12 Lakh - Rs. 20 Cr/year',
-      govtFee: '2,000 - 5,000/- Per Year',
+      govtFee: '2,000 - 5,000*/- Per Year',
       description: 'Required when turnover crosses 12 lakh but is less than 20 crores annually.',
       icon: Factory,
       color: 'blue',
@@ -58,7 +60,7 @@ export default function FSSAIRegistrationPage({ dict, setIsContactOpen }: FSSAIR
     {
       title: 'FSSAI Central License',
       turnover: 'More than Rs. 20 Cr/year',
-      govtFee: '7,500/- Per Year',
+      govtFee: '7,500*/- Per Year',
       description: 'Required for import/export business, government supply, or large-scale operations exceeding 20 crores.',
       icon: Globe,
       color: 'purple',
@@ -198,7 +200,7 @@ export default function FSSAIRegistrationPage({ dict, setIsContactOpen }: FSSAIR
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
               <button
-                onClick={() => setIsContactOpen(true)}
+                onClick={() => navigate("/contact")}
                 className="bg-[#3c8e59] hover:bg-[#2d6b43] text-white font-bold text-sm px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all uppercase tracking-wider font-poppins cursor-pointer"
               >
                 Apply Now
@@ -478,15 +480,15 @@ export default function FSSAIRegistrationPage({ dict, setIsContactOpen }: FSSAIR
                 <tbody>
                   <tr className="border-b border-gray-100">
                     <td className="py-3 px-4 text-sm text-gray-600 font-opensans">FSSAI Basic Registration</td>
-                    <td className="py-3 px-4 text-sm text-[#3c8e59] font-bold font-poppins text-right">100/- Per Year</td>
+                    <td className="py-3 px-4 text-sm text-[#3c8e59] font-bold font-poppins text-right">100*/- Per Year</td>
                   </tr>
                   <tr className="border-b border-gray-100">
                     <td className="py-3 px-4 text-sm text-gray-600 font-opensans">FSSAI State License</td>
-                    <td className="py-3 px-4 text-sm text-[#3c8e59] font-bold font-poppins text-right">2,000 - 5,000/- Per Year</td>
+                    <td className="py-3 px-4 text-sm text-[#3c8e59] font-bold font-poppins text-right">2,000 - 5,000*/- Per Year</td>
                   </tr>
                   <tr>
                     <td className="py-3 px-4 text-sm text-gray-600 font-opensans">FSSAI Central License</td>
-                    <td className="py-3 px-4 text-sm text-[#3c8e59] font-bold font-poppins text-right">7,500/- Per Year</td>
+                    <td className="py-3 px-4 text-sm text-[#3c8e59] font-bold font-poppins text-right">7,500*/- Per Year</td>
                   </tr>
                 </tbody>
               </table>
@@ -655,7 +657,7 @@ export default function FSSAIRegistrationPage({ dict, setIsContactOpen }: FSSAIR
               Start your food business legally with proper FSSAI Registration. Our experts will guide you through the entire process.
             </p>
             <button
-              onClick={() => setIsContactOpen(true)}
+              onClick={() => navigate("/contact")}
               className="bg-white text-[#3c8e59] hover:bg-gray-100 font-bold text-sm px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all uppercase tracking-wider font-poppins cursor-pointer"
             >
               Apply for FSSAI Now
@@ -669,7 +671,7 @@ export default function FSSAIRegistrationPage({ dict, setIsContactOpen }: FSSAIR
       <footer className="border-t border-emerald-500/10 py-8 bg-white">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
           <p className="text-gray-400 text-sm font-opensans">
-            &copy; {new Date().getFullYear()} Taaxwala Associate. All rights reserved.
+            &copy; {new Date().getFullYear()} Taxwala Associate. All rights reserved.
           </p>
         </div>
       </footer>

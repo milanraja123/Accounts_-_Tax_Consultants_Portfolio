@@ -9,6 +9,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
 import { TranslationDictionary } from '../../types';
 
+// Import logo
+import taxwalaLogo from '../../assets/images/Taxwala_logo.jpeg';
+
 interface HeroNavbarProps {
   dict: TranslationDictionary;
   setIsContactOpen: (open: boolean) => void;
@@ -31,8 +34,6 @@ const megaMenuData = {
         title: 'Business Registration',
         items: [
           { label: 'Private Limited Company', route: '/private-limited-company-registration' },
-          { label: 'LLP Registration', route: '/llp-registration' },
-          { label: 'One Person Company', route: '/one-person-company-registration' },
           { label: 'Proprietorship Firm', route: '/proprietorship-firm-registration' },
           { label: 'Partnership Firm', route: '/partnership-firm-registration' },
         ]
@@ -62,6 +63,7 @@ const navItems = [
   { label: 'Home', path: '/' },
   { label: 'Services', path: null, hasMegaMenu: true },
   { label: 'About', path: '/about' },
+  { label: 'Career', path: '/career' },
 ];
 
 export default function HeroNavbar({ dict, setIsContactOpen }: HeroNavbarProps) {
@@ -84,30 +86,23 @@ export default function HeroNavbar({ dict, setIsContactOpen }: HeroNavbarProps) 
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-24 flex items-center justify-between">
 
           {/* Logo Brand Group */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="flex items-center space-x-2 cursor-pointer group"
-          >
-            {/* Custom SVG Finance House Icon */}
-            <svg
-              className="w-8 h-8 text-white transition-transform duration-300 group-hover:scale-105"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+          <Link to="/" className="flex items-center space-x-3 cursor-pointer group">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="flex items-center space-x-3"
             >
-              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-              <circle cx="12" cy="13" r="2.5" />
-              <path d="M8.5 18.5a3.5 3.5 0 0 1 7 0" />
-            </svg>
-            <span className="text-2xl font-bold tracking-tight text-white select-none font-grotesk">
-              Taaxwala
-            </span>
-          </motion.div>
+              <img
+                src={taxwalaLogo}
+                alt="Taxwala Logo"
+                className="w-12 h-12 rounded-lg object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+              <span className="text-2xl font-bold tracking-tight text-white select-none font-grotesk uppercase">
+                Taxwala
+              </span>
+            </motion.div>
+          </Link>
 
           {/* Desktop Nav Links */}
           <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2">

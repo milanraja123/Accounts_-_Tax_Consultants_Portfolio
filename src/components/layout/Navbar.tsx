@@ -9,6 +9,9 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
 import { TranslationDictionary } from '../../types';
 
+// Import logo
+import taxwalaLogo from '../../assets/images/Taxwala_logo.jpeg';
+
 interface NavbarProps {
   dict: TranslationDictionary;
   variant?: 'light' | 'dark';
@@ -31,8 +34,6 @@ const megaMenuData = {
         title: 'Business Registration',
         items: [
           { label: 'Private Limited Company', route: '/private-limited-company-registration' },
-          { label: 'LLP Registration', route: '/llp-registration' },
-          { label: 'One Person Company', route: '/one-person-company-registration' },
           { label: 'Proprietorship Firm', route: '/proprietorship-firm-registration' },
           { label: 'Partnership Firm', route: '/partnership-firm-registration' },
         ]
@@ -62,6 +63,7 @@ const navItems = [
   { label: 'Home', path: '/' },
   { label: 'Services', path: null, hasMegaMenu: true },
   { label: 'About', path: '/about' },
+  { label: 'Career', path: '/career' },
 ];
 
 export default function Navbar({ dict, variant = 'light' }: NavbarProps) {
@@ -92,22 +94,14 @@ export default function Navbar({ dict, variant = 'light' }: NavbarProps) {
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-20 flex items-center justify-between">
 
           {/* Logo Brand Group */}
-          <Link to="/" className="flex items-center space-x-2 cursor-pointer group">
-            <svg
-              className={`w-8 h-8 transition-transform duration-300 group-hover:scale-105 ${isLight ? 'text-[#3c8e59]' : 'text-white'}`}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-              <circle cx="12" cy="13" r="2.5" />
-              <path d="M8.5 18.5a3.5 3.5 0 0 1 7 0" />
-            </svg>
-            <span className={`text-2xl font-bold tracking-tight select-none font-grotesk ${isLight ? 'text-[#111927]' : 'text-white'}`}>
-              Taaxwala
+          <Link to="/" className="flex items-center space-x-3 cursor-pointer group">
+            <img
+              src={taxwalaLogo}
+              alt="Taxwala Logo"
+              className="h-12 w-auto rounded-lg transition-transform duration-300 group-hover:scale-105"
+            />
+            <span className={`text-2xl font-bold tracking-tight uppercase select-none font-grotesk ${isLight ? 'text-[#111927]' : 'text-white'}`}>
+              Taxwala
             </span>
           </Link>
 

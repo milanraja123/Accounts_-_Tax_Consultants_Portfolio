@@ -43,26 +43,26 @@ const whyCards: WhyCard[] = [
     descKey: 'whyDavidCard3Desc',
     icon: <Package className="w-5 h-5" />,
   },
+  // {
+  //   id: '4',
+  //   titleKey: 'whyDavidCard4Title',
+  //   descKey: 'whyDavidCard4Desc',
+  //   icon: <HeartHandshake className="w-5 h-5" />,
+  // },
+  // {
+  //   id: '5',
+  //   titleKey: 'whyDavidCard5Title',
+  //   descKey: 'whyDavidCard5Desc',
+  //   icon: <BadgeCheck className="w-5 h-5" />,
+  // },
   {
     id: '4',
-    titleKey: 'whyDavidCard4Title',
-    descKey: 'whyDavidCard4Desc',
-    icon: <HeartHandshake className="w-5 h-5" />,
-  },
-  {
-    id: '5',
-    titleKey: 'whyDavidCard5Title',
-    descKey: 'whyDavidCard5Desc',
-    icon: <BadgeCheck className="w-5 h-5" />,
-  },
-  {
-    id: '6',
     titleKey: 'whyDavidCard6Title',
     descKey: 'whyDavidCard6Desc',
     icon: <Lock className="w-5 h-5" />,
   },
   {
-    id: '7',
+    id: '5',
     titleKey: 'whyDavidCard7Title',
     descKey: 'whyDavidCard7Desc',
     icon: <Star className="w-5 h-5" />,
@@ -90,7 +90,7 @@ export default function WhyChooseSection({ dict, setIsContactOpen }: WhyChooseSe
           >
             <img
               src={davidProfileImg}
-              alt="Taaxwala Associate - Tax & Finance Expert"
+              alt="Taxwala Associate - Tax & Finance Expert"
               referrerPolicy="no-referrer"
               className="w-full h-full object-cover transform hover:scale-[1.03] transition-transform duration-500"
             />
@@ -182,46 +182,7 @@ export default function WhyChooseSection({ dict, setIsContactOpen }: WhyChooseSe
 
         </div>
 
-        {/* Money Back Guarantee Banner */}
-        <motion.div
-          id="money-back-guarantee-banner"
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="bg-gradient-to-r from-[#3c8e59] to-[#2d6b43] rounded-[24px] p-8 md:p-10 lg:p-12 flex flex-col md:flex-row items-center gap-6 md:gap-10 text-white shadow-xl relative overflow-hidden"
-        >
-          {/* Decorative Background Element */}
-          <div className="absolute top-0 right-0 w-[200px] h-[200px] bg-white/5 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-[150px] h-[150px] bg-white/5 rounded-full blur-2xl pointer-events-none" />
-
-          {/* Shield Icon */}
-          <div className="relative z-10 flex-shrink-0">
-            <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center border-2 border-white/20">
-              <ShieldCheck className="w-10 h-10 md:w-12 md:h-12 text-white" />
-            </div>
-          </div>
-
-          {/* Content */}
-          <div className="relative z-10 text-center md:text-left flex-1">
-            <h3 className="text-2xl md:text-3xl font-extrabold tracking-tight leading-tight font-grotesk mb-3">
-              {dict.moneyBackTitle}
-            </h3>
-            <p className="text-sm md:text-[15px] font-light text-white/90 leading-relaxed font-opensans max-w-2xl">
-              {dict.moneyBackDesc}
-            </p>
-          </div>
-
-          {/* CTA Button */}
-          {/* <div className="relative z-10 flex-shrink-0">
-            <button
-              onClick={() => setIsContactOpen(true)}
-              className="cursor-pointer bg-white text-[#3c8e59] hover:bg-gray-100 font-semibold text-sm px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all font-poppins whitespace-nowrap"
-            >
-              Learn More
-            </button>
-          </div> */}
-        </motion.div>
+       
 
       </div>
     </section>

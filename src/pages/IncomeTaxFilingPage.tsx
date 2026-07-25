@@ -21,6 +21,7 @@ import {
   Shield,
   Receipt,
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { TranslationDictionary } from '../types';
 import Navbar from '../components/layout/Navbar';
 
@@ -30,6 +31,8 @@ interface IncomeTaxFilingPageProps {
 }
 
 export default function IncomeTaxFilingPage({ dict, setIsContactOpen }: IncomeTaxFilingPageProps) {
+  const navigate = useNavigate();
+
   const itrForms = [
     {
       name: 'ITR 1',
@@ -106,9 +109,9 @@ export default function IncomeTaxFilingPage({ dict, setIsContactOpen }: IncomeTa
   ];
 
   const pricingPlans = [
-    { name: 'ITR-1', desc: 'Salary + Other Income', price: '1499' },
-    { name: 'ITR-4', desc: 'Business + Other Income', price: '1499' },
-    { name: 'ITR-2', desc: 'Salary + Stock Market + Other Income', price: '2999' },
+    { name: 'ITR-1', desc: 'Salary + Other Income', price: '1499*' },
+    { name: 'ITR-4', desc: 'Business + Other Income', price: '1499*' },
+    { name: 'ITR-2', desc: 'Salary + Stock Market + Other Income', price: '2999*' },
     { name: 'ITR-3', desc: 'Salary + Stocks + F&O + Intraday + Other Income', price: '3499*' },
   ];
 
@@ -258,7 +261,7 @@ export default function IncomeTaxFilingPage({ dict, setIsContactOpen }: IncomeTa
           </div>
           <div className="text-center mt-8">
             <button
-              onClick={() => setIsContactOpen(true)}
+              onClick={() => navigate("/contact")}
               className="bg-[#3c8e59] hover:bg-[#2d6b43] text-white font-bold text-sm px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all uppercase tracking-wider font-poppins cursor-pointer"
             >
               Book Now
@@ -412,7 +415,7 @@ export default function IncomeTaxFilingPage({ dict, setIsContactOpen }: IncomeTa
               Let our expert tax consultants handle your ITR filing. Quick, accurate, and hassle-free service with dedicated support.
             </p>
             <button
-              onClick={() => setIsContactOpen(true)}
+              onClick={() => navigate("/contact")}
               className="bg-white text-[#3c8e59] hover:bg-gray-100 font-bold text-sm px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all uppercase tracking-wider font-poppins cursor-pointer"
             >
               Get Started Now
@@ -426,7 +429,7 @@ export default function IncomeTaxFilingPage({ dict, setIsContactOpen }: IncomeTa
       <footer className="border-t border-emerald-500/10 py-8 bg-white">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
           <p className="text-gray-400 text-sm font-opensans">
-            &copy; {new Date().getFullYear()} Taaxwala Associate. All rights reserved.
+            &copy; {new Date().getFullYear()} Taxwala Associate. All rights reserved.
           </p>
         </div>
       </footer>

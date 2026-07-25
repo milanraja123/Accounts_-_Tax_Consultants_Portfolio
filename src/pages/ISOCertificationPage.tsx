@@ -21,6 +21,7 @@ import {
   Plane,
   FileCheck,
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { TranslationDictionary } from '../types';
 import Navbar from '../components/layout/Navbar';
 
@@ -30,6 +31,8 @@ interface ISOCertificationPageProps {
 }
 
 export default function ISOCertificationPage({ dict, setIsContactOpen }: ISOCertificationPageProps) {
+  const navigate = useNavigate();
+
   const isoTypes = [
     { name: 'ISO 9001', desc: 'Quality management system which provides confidence in your product', icon: BadgeCheck },
     { name: 'ISO 13485', desc: 'Sector-specific quality standard for medical devices', icon: Shield },
@@ -112,7 +115,7 @@ export default function ISOCertificationPage({ dict, setIsContactOpen }: ISOCert
               Apply for ISO Certification and Registration in India with Lowest Cost. Get certified to prove your organization's quality standards.
             </p>
             <div className="inline-flex items-center gap-2 bg-[#3c8e59] text-white px-6 py-3 rounded-full font-bold text-lg font-grotesk">
-              Start Just at <span className="text-2xl">1499/-</span> INR
+              Start Just at <span className="text-2xl">1499*/-</span> INR
             </div>
           </motion.div>
         </div>
@@ -214,7 +217,7 @@ export default function ISOCertificationPage({ dict, setIsContactOpen }: ISOCert
             <div className="flex flex-col md:flex-row items-center justify-between gap-8">
               <div>
                 <div className="text-4xl md:text-5xl font-extrabold font-grotesk mb-2">
-                  1499/- <span className="text-xl font-normal">INR</span>
+                  1499*/- <span className="text-xl font-normal">INR</span>
                 </div>
                 <p className="text-white/80 text-sm font-opensans">(All Inclusive)</p>
               </div>
@@ -235,7 +238,7 @@ export default function ISOCertificationPage({ dict, setIsContactOpen }: ISOCert
             </div>
             <div className="text-center mt-8">
               <button
-                onClick={() => setIsContactOpen(true)}
+                onClick={() => navigate("/contact")}
                 className="bg-white text-[#3c8e59] hover:bg-gray-100 font-bold text-sm px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all uppercase tracking-wider font-poppins cursor-pointer"
               >
                 Book Now
@@ -489,7 +492,7 @@ export default function ISOCertificationPage({ dict, setIsContactOpen }: ISOCert
               Get your ISO certification with our expert consultants. We provide end-to-end assistance for ISO registration at the lowest cost.
             </p>
             <button
-              onClick={() => setIsContactOpen(true)}
+              onClick={() => navigate("/contact")}
               className="bg-white text-[#3c8e59] hover:bg-gray-100 font-bold text-sm px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all uppercase tracking-wider font-poppins cursor-pointer"
             >
               Get Started Now
@@ -503,7 +506,7 @@ export default function ISOCertificationPage({ dict, setIsContactOpen }: ISOCert
       <footer className="border-t border-emerald-500/10 py-8 bg-white">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
           <p className="text-gray-400 text-sm font-opensans">
-            &copy; {new Date().getFullYear()} Taaxwala Associate. All rights reserved.
+            &copy; {new Date().getFullYear()} Taxwala Associate. All rights reserved.
           </p>
         </div>
       </footer>

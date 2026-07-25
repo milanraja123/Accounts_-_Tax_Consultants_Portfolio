@@ -114,7 +114,7 @@ export default function Header({
         <div id="logo-branding-frame" className="flex items-center space-x-2 cursor-pointer group flex-shrink-0">
           <ADMonogram className="h-8 w-8 border border-gray-100 transition-transform group-hover:scale-105" />
           <span className="text-sm lg:text-base font-black tracking-[0.12em] text-[#131926] font-grotesk">
-            Taaxwala <span className="font-semibold text-gray-500">Associate</span>
+            Taxwala <span className="font-semibold text-gray-500">Associate</span>
           </span>
         </div>
 

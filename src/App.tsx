@@ -33,9 +33,11 @@ import ProprietorshipFirmPage from './pages/ProprietorshipFirmPage';
 import FSSAIRegistrationPage from './pages/FSSAIRegistrationPage';
 import TrademarkRegistrationPage from './pages/TrademarkRegistrationPage';
 import PartnershipFirmPage from './pages/PartnershipFirmPage';
+import CareerPage from './pages/CareerPage';
 
 // Other Components
 import ContactModal from './components/ContactModal';
+import FloatingWhatsApp from './components/ui/FloatingWhatsApp';
 
 // Home Page Component
 function HomePage() {
@@ -60,14 +62,16 @@ function HomePage() {
         setIsContactOpen={setIsContactOpen}
       />
 
-      {/* Features Section */}
-      <FeaturesSection dict={dict} />
-
       {/* Services Section */}
       <ServicesSection
         dict={dict}
         setIsContactOpen={setIsContactOpen}
       />
+
+      {/* Features Section */}
+      <FeaturesSection dict={dict} />
+
+      
 
       {/* Strategic Marketing Section */}
       <StrategicMarketingSection dict={dict} />
@@ -317,6 +321,24 @@ function PartnershipFirmPageWrapper() {
   );
 }
 
+// Career Page Wrapper
+function CareerPageWrapper() {
+  const [lang] = useState<Language>('EN');
+  const [isContactOpen, setIsContactOpen] = useState(false);
+  const dict = translations[lang];
+
+  return (
+    <>
+      <CareerPage dict={dict} setIsContactOpen={setIsContactOpen} />
+      <ContactModal
+        isOpen={isContactOpen}
+        onClose={() => setIsContactOpen(false)}
+        dict={dict}
+      />
+    </>
+  );
+}
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -334,7 +356,9 @@ export default function App() {
         <Route path="/fssai-registration" element={<FSSAIRegistrationPageWrapper />} />
         <Route path="/trademark-registration" element={<TrademarkRegistrationPageWrapper />} />
         <Route path="/partnership-firm-registration" element={<PartnershipFirmPageWrapper />} />
+        <Route path="/career" element={<CareerPageWrapper />} />
       </Routes>
+      <FloatingWhatsApp />
     </BrowserRouter>
   );
 }

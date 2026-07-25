@@ -110,17 +110,17 @@ export default function AboutPage({ dict, setIsContactOpen }: AboutPageProps) {
       </section>
 
       {/* Team Section */}
-      <TeamSection dict={dict} />
+      {/* <TeamSection dict={dict} /> */}
 
       {/* Stats Section */}
       <section className="bg-[#1a253c] py-16 md:py-20 px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
             {[
-              { number: '10+', label: 'Years Experience' },
-              { number: '5000+', label: 'Clients Served' },
-              { number: '98%', label: 'Success Rate' },
-              { number: '24/7', label: 'Support Available' }
+              { number: '5', label: 'Years Experience' },
+              { number: '1000+', label: 'Clients Served' },
+              { number: '95%', label: 'Success Rate' },
+              // { number: '24/7', label: 'Support Available' }
             ].map((stat, index) => (
               <motion.div
                 key={index}

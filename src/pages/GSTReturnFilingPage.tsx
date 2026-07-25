@@ -5,6 +5,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useNavigate } from 'react-router-dom';
 import {
   Receipt,
   CheckCircle,
@@ -33,6 +34,7 @@ interface GSTReturnFilingPageProps {
 }
 
 export default function GSTReturnFilingPage({ dict, setIsContactOpen }: GSTReturnFilingPageProps) {
+  const navigate = useNavigate();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const gstrTypes = [
@@ -227,7 +229,7 @@ export default function GSTReturnFilingPage({ dict, setIsContactOpen }: GSTRetur
             </p>
             <div className="mt-8">
               <button
-                onClick={() => setIsContactOpen(true)}
+                onClick={() => navigate("/contact")}
                 className="bg-[#3c8e59] hover:bg-[#2d6b43] text-white font-bold text-sm px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all uppercase tracking-wider font-poppins cursor-pointer"
               >
                 File GST Return Now
@@ -662,7 +664,7 @@ export default function GSTReturnFilingPage({ dict, setIsContactOpen }: GSTRetur
               Let our expert GST consultants handle your return filing. Timely, accurate, and hassle-free service with dedicated support throughout the process.
             </p>
             <button
-              onClick={() => setIsContactOpen(true)}
+              onClick={() => navigate("/contact")}
               className="bg-white text-[#3c8e59] hover:bg-gray-100 font-bold text-sm px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all uppercase tracking-wider font-poppins cursor-pointer"
             >
               Get Expert Assistance
@@ -676,7 +678,7 @@ export default function GSTReturnFilingPage({ dict, setIsContactOpen }: GSTRetur
       <footer className="border-t border-emerald-500/10 py-8 bg-white">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
           <p className="text-gray-400 text-sm font-opensans">
-            &copy; {new Date().getFullYear()} Taaxwala Associate. All rights reserved.
+            &copy; {new Date().getFullYear()} Taxwala Associate. All rights reserved.
           </p>
         </div>
       </footer>

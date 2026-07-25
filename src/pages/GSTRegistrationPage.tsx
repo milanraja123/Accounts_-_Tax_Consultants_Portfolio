@@ -5,6 +5,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useNavigate } from 'react-router-dom';
 import {
   Receipt,
   CheckCircle,
@@ -36,6 +37,7 @@ interface GSTRegistrationPageProps {
 }
 
 export default function GSTRegistrationPage({ dict, setIsContactOpen }: GSTRegistrationPageProps) {
+  const navigate = useNavigate();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const whoNeedsGST = [
@@ -190,10 +192,10 @@ export default function GSTRegistrationPage({ dict, setIsContactOpen }: GSTRegis
             </p>
             <div className="mt-8">
               <button
-                onClick={() => setIsContactOpen(true)}
+                onClick={() => navigate("/contact")}
                 className="bg-[#3c8e59] hover:bg-[#2d6b43] text-white font-bold text-sm px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all uppercase tracking-wider font-poppins cursor-pointer"
               >
-                Register Now @ 999/-
+                Register Now @ 999*/-
               </button>
             </div>
           </motion.div>
@@ -280,7 +282,7 @@ export default function GSTRegistrationPage({ dict, setIsContactOpen }: GSTRegis
                   All-Inclusive Package
                 </div>
                 <div className="text-5xl md:text-6xl font-extrabold font-grotesk mb-2">
-                  999<span className="text-2xl font-normal">/- INR</span>
+                  999*<span className="text-2xl font-normal">/- INR</span>
                 </div>
                 <p className="text-white/80 font-opensans">Complete GST Registration Service</p>
               </div>
@@ -298,7 +300,7 @@ export default function GSTRegistrationPage({ dict, setIsContactOpen }: GSTRegis
             </div>
             <div className="mt-8 text-center">
               <button
-                onClick={() => setIsContactOpen(true)}
+                onClick={() => navigate("/contact")}
                 className="bg-white text-[#3c8e59] hover:bg-gray-100 font-bold text-sm px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all uppercase tracking-wider font-poppins cursor-pointer"
               >
                 Get Started Now
@@ -621,10 +623,10 @@ export default function GSTRegistrationPage({ dict, setIsContactOpen }: GSTRegis
               Let our expert consultants handle your GST registration process. Quick, accurate, and hassle-free service with dedicated support throughout the process.
             </p>
             <button
-              onClick={() => setIsContactOpen(true)}
+              onClick={() => navigate("/contact")}
               className="bg-white text-[#3c8e59] hover:bg-gray-100 font-bold text-sm px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all uppercase tracking-wider font-poppins cursor-pointer"
             >
-              Get Started @ 999/-
+              Get Started @ 999*/-
             </button>
           </div>
         </motion.section>
@@ -635,7 +637,7 @@ export default function GSTRegistrationPage({ dict, setIsContactOpen }: GSTRegis
       <footer className="border-t border-emerald-500/10 py-8 bg-white">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
           <p className="text-gray-400 text-sm font-opensans">
-            &copy; {new Date().getFullYear()} Taaxwala Associate. All rights reserved.
+            &copy; {new Date().getFullYear()} Taxwala Associate. All rights reserved.
           </p>
         </div>
       </footer>

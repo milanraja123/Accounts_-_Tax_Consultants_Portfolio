@@ -5,6 +5,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useNavigate } from 'react-router-dom';
 import {
   Building2,
   CheckCircle,
@@ -37,6 +38,7 @@ interface MSMERegistrationPageProps {
 }
 
 export default function MSMERegistrationPage({ dict, setIsContactOpen }: MSMERegistrationPageProps) {
+  const navigate = useNavigate();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const classifications = [
@@ -252,13 +254,13 @@ export default function MSMERegistrationPage({ dict, setIsContactOpen }: MSMEReg
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
               <button
-                onClick={() => setIsContactOpen(true)}
+                onClick={() => navigate("/contact")}
                 className="bg-[#3c8e59] hover:bg-[#2d6b43] text-white font-bold text-sm px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all uppercase tracking-wider font-poppins cursor-pointer"
               >
                 Get Proposal
               </button>
               <button
-                onClick={() => setIsContactOpen(true)}
+                onClick={() => navigate("/contact")}
                 className="bg-transparent border-2 border-white/30 hover:border-white/50 text-white font-bold text-sm px-10 py-4 rounded-full transition-all uppercase tracking-wider font-poppins cursor-pointer"
               >
                 Book Now
@@ -627,7 +629,7 @@ export default function MSMERegistrationPage({ dict, setIsContactOpen }: MSMEReg
               Get your MSME Registration done quickly with our expert assistance. Avail government schemes, subsidies, and bank loan benefits for your business.
             </p>
             <button
-              onClick={() => setIsContactOpen(true)}
+              onClick={() => navigate("/contact")}
               className="bg-white text-[#3c8e59] hover:bg-gray-100 font-bold text-sm px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all uppercase tracking-wider font-poppins cursor-pointer"
             >
               Get Started Today
@@ -641,7 +643,7 @@ export default function MSMERegistrationPage({ dict, setIsContactOpen }: MSMEReg
       <footer className="border-t border-emerald-500/10 py-8 bg-white">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
           <p className="text-gray-400 text-sm font-opensans">
-            &copy; {new Date().getFullYear()} Taaxwala Associate. All rights reserved.
+            &copy; {new Date().getFullYear()} Taxwala Associate. All rights reserved.
           </p>
         </div>
       </footer>

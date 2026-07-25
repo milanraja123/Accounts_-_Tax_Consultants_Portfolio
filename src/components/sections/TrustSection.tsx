@@ -92,13 +92,13 @@ export default function TrustSection({ dict, setIsContactOpen }: TrustSectionPro
           {/* Soft Ambient decorative background gradient to replicate illustration premium accent */}
           <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="space-y-2 relative z-10 max-w-xl">
+          <div className="space-y-2 relative z-10 max-w-5xl">
             <h3 className="text-2xl sm:text-[34px] font-extrabold text-white tracking-tight leading-tight font-grotesk">
               {dict.ctaBannerTitle}
             </h3>
           </div>
 
-          <div className="relative z-10 flex-shrink-0">
+          {/* <div className="relative z-10 flex-shrink-0">
             <button
               type="button"
               onClick={() => setIsContactOpen(true)}
@@ -106,7 +106,7 @@ export default function TrustSection({ dict, setIsContactOpen }: TrustSectionPro
             >
               {dict.ctaBannerBtn}
             </button>
-          </div>
+          </div> */}
         </motion.div>
 
       </div>

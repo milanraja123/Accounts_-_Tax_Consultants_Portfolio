@@ -91,8 +91,8 @@ export default function HeroSection({ lang, dict, setIsContactOpen }: HeroSectio
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <span className="text-white tracking-[0.2em] font-extrabold text-[11px] sm:text-[13px] uppercase mb-4 block leading-none font-jakarta">
-              TAAXWALA ASSOCIATE
+            <span className="text-white tracking-[0.2em] font-extrabold text-[50px]! sm:text-[13px] uppercase mb-4 block leading-none font-jakarta">
+              TAXWALA ASSOCIATE
             </span>
           </motion.div>
 
@@ -101,11 +101,11 @@ export default function HeroSection({ lang, dict, setIsContactOpen }: HeroSectio
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-bold text-white tracking-tight leading-[1.08] mb-6 select-none font-jakarta"
+            className="text-4xl sm:text-6xl md:text-7xl lg:text-[50px] font-bold text-white tracking-tight leading-[1.08] mb-6 select-none font-jakarta"
           >
            Accounting & Tax
             <br />
-            Consultant Company
+            Consultancy
           </motion.h1>
 
           {/* Hero Paragraph Copy */}
@@ -115,7 +115,7 @@ export default function HeroSection({ lang, dict, setIsContactOpen }: HeroSectio
             transition={{ duration: 0.9, ease: "easeOut", delay: 0.3 }}
             className="text-white/80 text-sm sm:text-base leading-relaxed max-w-xl mb-4 font-normal font-jakarta"
           >
-           Taaxwala Associate operates as an independent provider of tax consultancy and business compliance services. We are neither a practicing CA/CS/legal firm nor an authorized representative of any government body. Our offerings include taxation guidance, compliance assistance, and educational courses only.
+           Taxwala Associate operates as an independent provider of tax consultancy and business compliance services. We are neither a practicing CA/CS/legal firm nor an authorized representative of any government body. Our offerings include taxation guidance, compliance assistance, and educational courses only.
           </motion.p>
 
           {/* Disclaimer Description */}
@@ -125,7 +125,7 @@ export default function HeroSection({ lang, dict, setIsContactOpen }: HeroSectio
             transition={{ duration: 0.9, ease: "easeOut", delay: 0.4 }}
             className="text-white/50 text-[11px] sm:text-xs leading-relaxed max-w-xl mb-9 font-normal font-jakarta"
           >
-            Taaxwala Associate operates as an independent provider of tax consultancy and business compliance services. We are neither a practicing CA/CS/legal firm nor an authorized representative of any government body. Our offerings include taxation guidance, compliance assistance, and educational courses only.
+            Taxwala Associate operates as an independent provider of tax consultancy and business compliance services. We are neither a practicing CA/CS/legal firm nor an authorized representative of any government body. Our offerings include taxation guidance, compliance assistance, and educational courses only.
           </motion.p> */}
 
           {/* CTA Learn More Button */}

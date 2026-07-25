@@ -3,12 +3,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Heart } from 'lucide-react';
 import { Language, TranslationDictionary } from '../../types';
-import ADMonogram from '../ui/ADMonogram';
 
-// Import image
+// Import images
 import footerBannerBgImg from '../../assets/images/footer_banner_bg_1780340288358.png';
+import taxwalaLogo from '../../assets/images/Taxwala_logo.jpeg';
 
 interface FooterProps {
   lang: Language;
@@ -73,15 +73,18 @@ export default function Footer({ lang, dict, setIsContactOpen }: FooterProps) {
             {/* Brand Col */}
             <div className="md:col-span-6 space-y-6">
               <div className="flex items-center gap-3">
-                {/* Reuse ADMonogram nicely */}
-                <ADMonogram className="h-10 w-10" />
+                <img
+                  src={taxwalaLogo}
+                  alt="Taxwala Logo"
+                  className="h-12 w-auto rounded-lg"
+                />
                 <span className="font-extrabold text-[22px] tracking-wider text-[#131926] font-grotesk">
-                  Taaxwala Associate
+                  Taxwala Associate
                 </span>
               </div>
 
               <p className="text-xs sm:text-[13px] text-gray-500 font-normal leading-relaxed text-justify pr-0 md:pr-12 select-text font-opensans">
-                Taaxwala Associate operates as an independent provider of tax consultancy and business compliance services. We are neither a practicing CA/CS/legal firm nor an authorized representative of any government body. Our offerings include taxation guidance, compliance assistance, and educational courses only.
+                Taxwala Associate operates as an independent provider of tax consultancy and business compliance services. We are neither a practicing CA/CS/legal firm nor an authorized representative of any government body. Our offerings include taxation guidance, compliance assistance, and educational courses only.
               </p>
             </div>
 
@@ -112,6 +115,9 @@ export default function Footer({ lang, dict, setIsContactOpen }: FooterProps) {
                 <li>
                   <a href="/trademark-registration" className="hover:text-gray-900 transition-colors">Trademark Registration</a>
                 </li>
+                <li>
+                  <a href="/career" className="hover:text-gray-900 transition-colors">Career</a>
+                </li>
               </ul>
             </div>
 
@@ -124,35 +130,35 @@ export default function Footer({ lang, dict, setIsContactOpen }: FooterProps) {
                 {/* Address */}
                 <li className="space-y-1">
                   <span className="text-[#131926] font-semibold block">Office Address</span>
-                  <span className="block">123 Business Park, Tower A, 5th Floor</span>
-                  <span className="block">Andheri East, Mumbai - 400069</span>
-                  <span className="block">Maharashtra, India</span>
+                  <span className="block">91b Aurobindo Sarani,</span>
+                  <span className="block">kolkata -700006 (Hatibagan)</span>
+                  <span className="block">West Bengal, India</span>
                 </li>
                 {/* Phone */}
                 <li className="space-y-1">
                   <span className="text-[#131926] font-semibold block">Phone</span>
-                  <a href="tel:+919876543210" className="block hover:text-gray-900 transition-colors">
-                    +91 98765 43210 (Primary)
+                  <a href="tel:+919062453147" className="block hover:text-gray-900 transition-colors">
+                    +91 90624 53147 (Primary)
                   </a>
-                  <a href="tel:+919876543211" className="block hover:text-gray-900 transition-colors">
-                    +91 98765 43211 (Support)
+                  <a href="tel:+917980776643" className="block hover:text-gray-900 transition-colors">
+                    +91 79807 76643 (Support)
                   </a>
                 </li>
                 {/* Email */}
                 <li className="space-y-1">
                   <span className="text-[#131926] font-semibold block">Email</span>
-                  <a href="mailto:contact@taaxwala.com" className="block hover:text-gray-900 transition-colors">
-                    contact@taaxwala.com
+                  <a href="mailto:taxwalaassociates.dtc@gmail.com" className="block hover:text-gray-900 transition-colors">
+                    taxwalaassociates.dtc@gmail.com
                   </a>
-                  <a href="mailto:support@taaxwala.com" className="block hover:text-gray-900 transition-colors">
-                    support@taaxwala.com
-                  </a>
+                  {/* <a href="mailto:support@Taxwala.com" className="block hover:text-gray-900 transition-colors">
+                    support@Taxwala.com
+                  </a> */}
                 </li>
                 {/* Hours */}
                 <li className="space-y-1">
                   <span className="text-[#131926] font-semibold block">Office Hours</span>
-                  <span className="block">Mon - Fri: 9:00 AM - 7:00 PM</span>
-                  <span className="block">Saturday: 10:00 AM - 4:00 PM</span>
+                  <span className="block">Tue - Sun: 11:00 AM - 8:00 PM</span>
+                  {/* <span className="block">Mo: 10:00 AM - 4:00 PM</span> */}
                 </li>
               </ul>
             </div>
@@ -161,11 +167,6 @@ export default function Footer({ lang, dict, setIsContactOpen }: FooterProps) {
 
           {/* Divider line exactly matching screenshot */}
           <div className="border-t border-gray-200/80 w-full pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400 font-opensans">
-            {/* <div>
-              <a href="https://karmatechhub.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 transition-colors font-medium">
-                Karmatechhub.com
-              </a>
-            </div> */}
             <div className="flex items-center gap-6 font-medium">
               <a href="#" className="hover:text-gray-600 transition-colors">
                 Terms and conditions
@@ -173,9 +174,10 @@ export default function Footer({ lang, dict, setIsContactOpen }: FooterProps) {
               <a href="#" className="hover:text-gray-600 transition-colors">
                 Privacy policy
               </a>
-              {/* <a href="#" className="hover:text-gray-600 transition-colors">
-                {lang === 'EN' ? 'Product' : 'Produkt'}
-              </a> */}
+            </div>
+            <div className="flex items-center gap-1 text-[10px] text-gray-700 font-bold">
+              <Heart className="w-3 h-3 fill-red-500 text-red-500" />
+              <span>Developed and maintained by <a href="https://www.ryouinfotech.com/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 underline transition-colors">RyouInfotech</a></span>
             </div>
           </div>
 

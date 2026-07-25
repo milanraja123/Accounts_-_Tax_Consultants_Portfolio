@@ -5,6 +5,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useNavigate } from 'react-router-dom';
 import {
   Building2,
   CheckCircle,
@@ -39,6 +40,7 @@ interface PrivateLimitedCompanyPageProps {
 }
 
 export default function PrivateLimitedCompanyPage({ dict, setIsContactOpen }: PrivateLimitedCompanyPageProps) {
+  const navigate = useNavigate();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const registrationSteps = [
@@ -212,13 +214,13 @@ export default function PrivateLimitedCompanyPage({ dict, setIsContactOpen }: Pr
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
               <button
-                onClick={() => setIsContactOpen(true)}
+                onClick={() => navigate("/contact")}
                 className="bg-[#3c8e59] hover:bg-[#2d6b43] text-white font-bold text-sm px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all uppercase tracking-wider font-poppins cursor-pointer"
               >
                 Get Proposal
               </button>
               <button
-                onClick={() => setIsContactOpen(true)}
+                onClick={() => navigate("/contact")}
                 className="bg-transparent border-2 border-white/30 hover:border-white/50 text-white font-bold text-sm px-10 py-4 rounded-full transition-all uppercase tracking-wider font-poppins cursor-pointer"
               >
                 Book Now
@@ -283,7 +285,7 @@ export default function PrivateLimitedCompanyPage({ dict, setIsContactOpen }: Pr
                   Cheapest Cost - All Inclusive
                 </div>
                 <div className="text-5xl md:text-6xl font-extrabold font-grotesk mb-2">
-                  10,999<span className="text-2xl font-normal">/- INR</span>
+                  10,999*<span className="text-2xl font-normal">/- INR</span>
                 </div>
                 <p className="text-white/80 font-opensans text-sm">(Exclude GST) + GST Credit Available</p>
               </div>
@@ -314,7 +316,7 @@ export default function PrivateLimitedCompanyPage({ dict, setIsContactOpen }: Pr
             </div>
             <div className="mt-8 text-center">
               <button
-                onClick={() => setIsContactOpen(true)}
+                onClick={() => navigate("/contact")}
                 className="bg-white text-[#3c8e59] hover:bg-gray-100 font-bold text-sm px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all uppercase tracking-wider font-poppins cursor-pointer"
               >
                 Book Now
@@ -501,7 +503,7 @@ export default function PrivateLimitedCompanyPage({ dict, setIsContactOpen }: Pr
               <ul className="space-y-2">
                 <li className="flex items-start gap-2 text-sm text-gray-600 font-opensans">
                   <span className="font-semibold text-[#3c8e59]">1.</span>
-                  <span><strong>Core Portion:</strong> First name like Brand Name (e.g., "Taaxwala")</span>
+                  <span><strong>Core Portion:</strong> First name like Brand Name (e.g., "Taxwala")</span>
                 </li>
                 <li className="flex items-start gap-2 text-sm text-gray-600 font-opensans">
                   <span className="font-semibold text-[#3c8e59]">2.</span>
@@ -513,7 +515,7 @@ export default function PrivateLimitedCompanyPage({ dict, setIsContactOpen }: Pr
                 </li>
               </ul>
               <p className="text-sm text-[#3c8e59] font-semibold mt-4 font-poppins">
-                Example: Taaxwala Consulting Private Limited
+                Example: Taxwala Consulting Private Limited
               </p>
             </div>
             <div className="bg-amber-50 rounded-xl p-6 border border-amber-200 mt-4">
@@ -596,7 +598,7 @@ export default function PrivateLimitedCompanyPage({ dict, setIsContactOpen }: Pr
           className="mb-16"
         >
           <h2 className="text-2xl md:text-3xl font-extrabold text-[#111927] mb-6 font-grotesk">
-            Why Choose Taaxwala for Pvt Ltd Registration?
+            Why Choose Taxwala for Pvt Ltd Registration?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
@@ -896,10 +898,10 @@ export default function PrivateLimitedCompanyPage({ dict, setIsContactOpen }: Pr
               Get your Private Limited Company registered with our expert assistance. 100% online process with FREE consultancy and MSME registration included!
             </p>
             <button
-              onClick={() => setIsContactOpen(true)}
+              onClick={() => navigate("/contact")}
               className="bg-white text-[#3c8e59] hover:bg-gray-100 font-bold text-sm px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all uppercase tracking-wider font-poppins cursor-pointer"
             >
-              Register Now @ 10,999/-
+              Register Now @ 10,999*/-
             </button>
           </div>
         </motion.section>
@@ -910,7 +912,7 @@ export default function PrivateLimitedCompanyPage({ dict, setIsContactOpen }: Pr
       <footer className="border-t border-emerald-500/10 py-8 bg-white">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
           <p className="text-gray-400 text-sm font-opensans">
-            &copy; {new Date().getFullYear()} Taaxwala Associate. All rights reserved.
+            &copy; {new Date().getFullYear()} Taxwala Associate. All rights reserved.
           </p>
         </div>
       </footer>

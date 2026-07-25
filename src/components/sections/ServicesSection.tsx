@@ -5,7 +5,7 @@
 
 import { motion } from 'motion/react';
 import { ArrowUpRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { TranslationDictionary } from '../../types';
 
 interface ServicesSectionProps {
@@ -35,68 +35,7 @@ export default function ServicesSection({ dict, setIsContactOpen }: ServicesSect
 
         {/* Three Column Matrix with dividing borders */}
         <div className="grid grid-cols-1 md:grid-cols-3 border-t border-b border-white/10 md:divide-x md:divide-white/10 py-6 md:py-0">
-
-          {/* Column 1: Accounting */}
-          <motion.div
-            id="service-col-accounting"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="group p-8 md:p-12 space-y-6 flex flex-col justify-between hover:bg-white/[0.02] transition-colors"
-          >
-            <div className="space-y-4">
-              <h3 className="text-3xl md:text-[34px] font-bold text-white tracking-tight leading-none group-hover:text-[#38bdf8] transition-colors font-grotesk">
-                {dict.servicesSectionAccountingTitle}
-              </h3>
-              <p className="text-sm text-gray-400 leading-relaxed font-light select-text font-opensans">
-                {dict.servicesSectionAccountingDesc}
-              </p>
-            </div>
-
-            <div className="pt-4">
-              <button
-                id="accounting-see-more-btn"
-                onClick={() => navigate("/contact")}
-                className="cursor-pointer inline-flex items-center gap-2 text-sm font-semibold tracking-wider text-white hover:text-[#38bdf8] transition-colors group-hover:translate-x-1 duration-200 font-poppins"
-              >
-                <span>{dict.getInTouch}</span>
-                <ArrowUpRight className="h-4 w-4 stroke-[2.5]" />
-              </button>
-            </div>
-          </motion.div>
-
-          {/* Column 2: Tax */}
-          <motion.div
-            id="service-col-tax"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="group p-8 md:p-12 space-y-6 flex flex-col justify-between hover:bg-white/[0.02] transition-colors"
-          >
-            <div className="space-y-4">
-              <h3 className="text-3xl md:text-[34px] font-bold text-white tracking-tight leading-none group-hover:text-[#38bdf8] transition-colors font-grotesk">
-                {dict.servicesSectionTaxTitle}
-              </h3>
-              <p className="text-sm text-gray-400 leading-relaxed font-light select-text font-opensans">
-                {dict.servicesSectionTaxDesc}
-              </p>
-            </div>
-
-            <div className="pt-4">
-              <button
-                id="tax-see-more-btn"
-                onClick={() => navigate("/contact")}
-                className="cursor-pointer inline-flex items-center gap-2 text-sm font-semibold tracking-wider text-white hover:text-[#38bdf8] transition-colors group-hover:translate-x-1 duration-200 font-poppins"
-              >
-                <span>{dict.getInTouch}</span>
-                <ArrowUpRight className="h-4 w-4 stroke-[2.5]" />
-              </button>
-            </div>
-          </motion.div>
-
-          {/* Column 3: Consulting */}
+        {/* Column 1: Consulting */}
           <motion.div
             id="service-col-consulting"
             initial={{ opacity: 0, y: 20 }}
@@ -106,9 +45,11 @@ export default function ServicesSection({ dict, setIsContactOpen }: ServicesSect
             className="group p-8 md:p-12 space-y-6 flex flex-col justify-between hover:bg-white/[0.02] transition-colors"
           >
             <div className="space-y-4">
+              <Link to="/contact">
               <h3 className="text-3xl md:text-[34px] font-bold text-white tracking-tight leading-none group-hover:text-[#38bdf8] transition-colors font-grotesk">
                 {dict.servicesSectionConsultingTitle}
               </h3>
+              </Link>
               <p className="text-sm text-gray-400 leading-relaxed font-light select-text font-opensans">
                 {dict.servicesSectionConsultingDesc}
               </p>
@@ -126,6 +67,72 @@ export default function ServicesSection({ dict, setIsContactOpen }: ServicesSect
             </div>
           </motion.div>
 
+
+          {/* Column 2: Accounting */}
+          <motion.div
+            id="service-col-accounting"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="group p-8 md:p-12 space-y-6 flex flex-col justify-between hover:bg-white/[0.02] transition-colors"
+          >
+            <div className="space-y-4">
+              <Link to="/iso-certification">
+              <h3 className="text-3xl md:text-[34px] font-bold text-white tracking-tight leading-none group-hover:text-[#38bdf8] transition-colors font-grotesk">
+                {dict.servicesSectionAccountingTitle}
+              </h3>
+              </Link>
+              <p className="text-sm text-gray-400 leading-relaxed font-light select-text font-opensans">
+                {dict.servicesSectionAccountingDesc}
+              </p>
+            </div>
+
+            <div className="pt-4">
+              <button
+                id="accounting-see-more-btn"
+                onClick={() => navigate("/contact")}
+                className="cursor-pointer inline-flex items-center gap-2 text-sm font-semibold tracking-wider text-white hover:text-[#38bdf8] transition-colors group-hover:translate-x-1 duration-200 font-poppins"
+              >
+                <span>{dict.getInTouch}</span>
+                <ArrowUpRight className="h-4 w-4 stroke-[2.5]" />
+              </button>
+            </div>
+          </motion.div>
+
+          {/* Column 3: Tax */}
+          <motion.div
+            id="service-col-tax"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="group p-8 md:p-12 space-y-6 flex flex-col justify-between hover:bg-white/[0.02] transition-colors"
+          >
+            <div className="space-y-4">
+              <Link to="/income-tax-filing">
+              <h3 className="text-3xl md:text-[34px] font-bold text-white tracking-tight leading-none group-hover:text-[#38bdf8] transition-colors font-grotesk">
+                {dict.servicesSectionTaxTitle}
+              </h3>
+              </Link>
+              <p className="text-sm text-gray-400 leading-relaxed font-light select-text font-opensans">
+                {dict.servicesSectionTaxDesc}
+              </p>
+            </div>
+
+            <div className="pt-4">
+              <button
+                id="tax-see-more-btn"
+                onClick={() => navigate("/contact")}
+                className="cursor-pointer inline-flex items-center gap-2 text-sm font-semibold tracking-wider text-white hover:text-[#38bdf8] transition-colors group-hover:translate-x-1 duration-200 font-poppins"
+              >
+                <span>{dict.getInTouch}</span>
+                <ArrowUpRight className="h-4 w-4 stroke-[2.5]" />
+              </button>
+            </div>
+          </motion.div>
+
+          
         </div>
       </div>
     </section>

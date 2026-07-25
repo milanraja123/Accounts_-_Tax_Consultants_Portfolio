@@ -5,6 +5,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useNavigate } from 'react-router-dom';
 import {
   Building2,
   CheckCircle,
@@ -37,6 +38,7 @@ interface ProprietorshipFirmPageProps {
 }
 
 export default function ProprietorshipFirmPage({ dict, setIsContactOpen }: ProprietorshipFirmPageProps) {
+  const navigate = useNavigate();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const legalEntityOptions = [
@@ -210,7 +212,7 @@ export default function ProprietorshipFirmPage({ dict, setIsContactOpen }: Propr
             </div>
             <div className="mt-8">
               <button
-                onClick={() => setIsContactOpen(true)}
+                onClick={() => navigate("/contact")}
                 className="bg-[#3c8e59] hover:bg-[#2d6b43] text-white font-bold text-sm px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all uppercase tracking-wider font-poppins cursor-pointer"
               >
                 Book Now
@@ -330,7 +332,7 @@ export default function ProprietorshipFirmPage({ dict, setIsContactOpen }: Propr
 
           <div className="text-center mt-8">
             <button
-              onClick={() => setIsContactOpen(true)}
+              onClick={() => navigate("/contact")}
               className="bg-[#3c8e59] hover:bg-[#2d6b43] text-white font-bold text-sm px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all uppercase tracking-wider font-poppins cursor-pointer"
             >
               Book Now
@@ -809,7 +811,7 @@ export default function ProprietorshipFirmPage({ dict, setIsContactOpen }: Propr
               Get your Sole Proprietorship Firm registered with our expert assistance. Lowest cost, fastest processing, and dedicated support!
             </p>
             <button
-              onClick={() => setIsContactOpen(true)}
+              onClick={() => navigate("/contact")}
               className="bg-white text-[#3c8e59] hover:bg-gray-100 font-bold text-sm px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition-all uppercase tracking-wider font-poppins cursor-pointer"
             >
               Register Now @ 1,499/-
@@ -823,7 +825,7 @@ export default function ProprietorshipFirmPage({ dict, setIsContactOpen }: Propr
       <footer className="border-t border-emerald-500/10 py-8 bg-white">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
           <p className="text-gray-400 text-sm font-opensans">
-            &copy; {new Date().getFullYear()} Taaxwala Associate. All rights reserved.
+            &copy; {new Date().getFullYear()} Taxwala Associate. All rights reserved.
           </p>
         </div>
       </footer>

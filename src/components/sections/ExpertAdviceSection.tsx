@@ -143,11 +143,11 @@ export default function ExpertAdviceSection({ lang, dict }: ExpertAdviceSectionP
             <div className="flex flex-wrap items-center justify-center gap-4 mb-4">
               <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                 <Users className="w-4 h-4 text-[#3c8e59]" />
-                <span className="text-white font-bold text-sm font-poppins">10000+ Happy Clients</span>
+                <span className="text-white font-bold text-sm font-poppins">1000+ Happy Clients</span>
               </div>
               <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                 <MessageSquare className="w-4 h-4 text-[#3c8e59]" />
-                <span className="text-white font-bold text-sm font-poppins">1000+ Social Reviews</span>
+                <span className="text-white font-bold text-sm font-poppins">100+ Social Reviews</span>
               </div>
             </div>
 
